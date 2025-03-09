@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ GAME</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="screen1">
+        <h1>Welcome to the Quiz Game</h1>
+        <label for="category">Choose Category:</label>
+        <select id="categories">
+            <option value="9">General Knowledge</option>
+            <option value="21">Sports</option>
+            <option value="23">History</option>
+            <option value="18">Science</option>
+            <option value="11">Movies</option>
+            <option value="17">Nature</option>
+            <option value="22">Geography</option>
+            <option value="24">Politics</option>
+            <option value="25">Art</option>
+            <option value="27">Animals</option>
+        </select>
+        <label for="difficulty">Choose Difficulty:</label>
+        <select id="difficulty-levels">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+        <button onclick="startQuiz()">Start Quiz</button>
+    </div>
+
+    <div id="screen2" style="display: none;">
+        <h2 id="selected-category-display"></h2>
+        <h3 id="selected-difficulty-display"></h3>
+        <h2 id="question-num"></h2>
+        <h3 id="question"></h3>
+        <div id="options"></div>
+        <p id="timer"></p>
+        <p>Current Score: <span id="score">0</span></p>
+    </div>
+
+    <div id="screen3" style="display: none;">
+        <h1>Quiz Completed</h1>
+        <h3>Final Score: <span id="final-score">0</span></h3>
+        <button onclick="restartQuiz()">Play Again</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

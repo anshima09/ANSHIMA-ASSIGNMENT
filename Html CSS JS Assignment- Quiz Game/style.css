@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&family=Orbitron:wght@400;600&display=swap');
+
+body {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#screen1, #screen2, #screen3 {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 900px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    font-family: 'Orbitron', sans-serif;
+
+}
+
+
+h1, h2, h3 {
+    color: #333;
+    font-family: 'Orbitron', sans-serif;
+
+}
+
+select, button {
+    font-size: 15px;
+    padding: 14px;
+    margin: 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-family: 'Raleway', sans-serif;
+
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#options button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    background-color: #8a7fc9; 
+    border: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+
+}
+
+#options button:hover {
+    background-color: #7a6bb5; 
+}
+
+#timer {
+    font-weight: bold;
+    color: red;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 20px;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+        height: auto;
+    }
+
+    #screen1, #screen2, #screen3 {
+        width: 95%;
+        height: auto;
+        padding: 20px;
+    }
+
+    h1, h2, h3 {
+        font-size: 18px;
+    }
+
+    select, button {
+        font-size: 14px;
+        padding: 10px;
+        margin: 8px;
+    }
+
+    #options button {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    #timer {
+        top: 10px;
+        right: 15px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1, h2, h3 {
+        font-size: 16px;
+    }
+
+    select, button {
+        font-size: 12px;
+        padding: 8px;
+        margin: 6px;
+    }
+
+    #options button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    #timer {
+        font-size: 14px;
+    }
+}
