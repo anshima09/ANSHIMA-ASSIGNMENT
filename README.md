@@ -1,2 +1,2 @@
 # ANSHIMA-ASSIGNMENT
-git learning repo
+All NucleusTech assignments will be uploaded here!
