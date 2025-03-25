@@ -1,0 +1,138 @@
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Background Styling */
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120vh;
+}
+
+/* Main Container */
+.container {
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Heading */
+h1 {
+    color: #f8d210;
+    margin-bottom: 20px;
+}
+
+/* Input & Button Styles */
+input, button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+input {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+input::placeholder {
+    color: #ddd;
+}
+
+button {
+    background: #f8d210;
+    color: #1e3c72;
+    font-weight: bold;
+    cursor: pointer;
+    transform: scale(1);
+}
+
+button:hover {
+    background: #ff4e00;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Form Container */
+.form-container {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: left;
+    color: white;
+}
+
+th {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Action Buttons */
+.action-btn {
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.edit-btn {
+    background: #1abc9c;
+    color: white;
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.action-btn:hover {
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+}
