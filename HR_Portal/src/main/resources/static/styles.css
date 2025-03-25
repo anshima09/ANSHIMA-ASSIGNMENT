@@ -1,0 +1,146 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Page background */
+body {
+    background: linear-gradient(135deg, #ffdde1, #ff4081);
+    color: #fff;
+}
+
+/* Main container */
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #fff;
+    color: #333;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+input, button {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+    border-color: #ff4081;
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(255, 64, 129, 0.5);
+}
+
+button {
+    background: #ff4081;
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    border-radius: 20px;
+}
+
+button:hover {
+    background: #d81b60;
+    transform: scale(1.05);
+}
+
+/* Heading */
+h1 {
+    margin-bottom: 25px;
+    color: #ff4081;
+    font-size: 32px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Form Styling */
+.form-container {
+    background: #fff;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 16px;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    background: #ff4081;
+    color: white;
+    text-transform: uppercase;
+}
+
+tr:hover {
+    background: rgba(255, 64, 129, 0.1);
+}
+
+/* Button Styling */
+.action-btn {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.edit-btn {
+    background: #4caf50;
+    color: white;
+}
+
+.delete-btn {
+    background: #f44336;
+    color: white;
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 25px;
+    }
+
+    form input, form button {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}
