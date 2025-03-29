@@ -1,0 +1,101 @@
+      /* Modal Background (Dark Transparent Overlay) */
+      .modal {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    /* Modal Box */
+    .modal-content {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        padding: 25px;
+        width: 380px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        animation: slideUp 0.3s ease-in-out;
+    }
+    
+    /* Close Button */
+    .close {
+        float: right;
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #333;
+        transition: color 0.3s;
+    }
+    
+    .close:hover {
+        color: #e74c3c;
+    }
+    
+    /* Modal Title */
+    .modal-content h2 {
+        font-size: 22px;
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+    
+    /* Labels */
+    .modal-content label {
+        display: block;
+        font-weight: 500;
+        color: #34495e;
+        margin-top: 10px;
+    }
+    
+    /* Input Fields */
+    .modal-content input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 2px solid #bdc3c7;
+        border-radius: 6px;
+        font-size: 16px;
+        outline: none;
+        transition: 0.3s;
+    }
+    
+    .modal-content input:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+    }
+    
+    /* Confirm Booking Button */
+    .modal-content button {
+        margin-top: 20px;
+        background: #ff4757;
+        color: white;
+        font-size: 18px;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        transition: 0.3s ease-in-out;
+    }
+    
+    .modal-content button:hover {
+        background: #ff4757;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }

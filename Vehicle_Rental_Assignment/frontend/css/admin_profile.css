@@ -1,0 +1,113 @@
+
+/* Profile Container */
+.profile-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+}
+
+/* Profile Header */
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-header h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.badge-admin {
+    background: #ff4757;
+    color: #fff;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.profile-email {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Stats Bar */
+.profile-stats {
+    display: flex;
+    justify-content: space-between;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #888;
+}
+
+.stat-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Details Grid */
+.details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Detail Card */
+.detail-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.card-header i {
+    font-size: 22px;
+    color: #ff4757;
+}
+
+.card-header h3 {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
+
+/* Privileges List */
+.privileges-list {
+    list-style: none;
+    padding: 0;
+}
+
+.privileges-list li {
+    font-size: 14px;
+    color: #555;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.privileges-list i {
+    color: #2ed573;
+}

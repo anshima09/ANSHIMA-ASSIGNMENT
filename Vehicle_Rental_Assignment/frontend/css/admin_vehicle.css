@@ -1,0 +1,196 @@
+
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+/* Add Vehicle Button */
+.add-vehicle-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #ff4757;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.add-vehicle-btn:hover {
+    background: #ff4757;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Vehicles Grid */
+.vehicles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 5px;
+}
+
+.vehicle-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.vehicle-image {
+    height: 100px;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #95a5a6;
+    font-size: 50px;
+}
+
+.vehicle-details {
+    padding: 15px;
+}
+
+.vehicle-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+.vehicle-type {
+    display: inline-block;
+    padding: 5px 12px;
+    background-color: #ecf0f1;
+    color: #333;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.vehicle-info {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+}
+
+.vehicle-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+.vehicle-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px 15px;
+}
+
+.btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    margin-left: 35%;
+}
+
+.btn-primary {
+    background-color: #ff4757;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #be4237;
+}
+
+.btn-secondary {
+    background-color: #ecf0f1;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background-color: #d5dbdb;
+}
+
+.availability {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.available {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.vehicle-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px 15px;
+}
+
+.book-btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    margin-left: 35%;
+}
+
+.book-btn-primary {
+    background-color: #ff4757;
+    color: white;
+}
+
+.book-btn-primary:hover {
+    background-color: #be4237;
+}
+
+.unavailable {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Loading State */
+.loading {
+    text-align: center;
+    font-size: 18px;
+    color: #7f8c8d;
+    margin-top: 20px;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .vehicles-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}

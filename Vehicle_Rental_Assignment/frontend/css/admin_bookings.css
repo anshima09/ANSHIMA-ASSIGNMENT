@@ -1,0 +1,61 @@
+
+
+.container {
+    max-width: 1200px;
+    margin: 3% auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
+.bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bookings-table th, .bookings-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.bookings-table th {
+    background-color: #ff4757;
+    color: white;
+    font-weight: bold;
+}
+
+.bookings-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.status-confirmed {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+.status-cancelled {
+    color: #ff4757;
+    font-weight: bold;
+}
+
+.loading {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #7f8c8d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .bookings-table th, .bookings-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}

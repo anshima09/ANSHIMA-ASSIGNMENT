@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/users.css">
+    <style>
+       
+     
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2 class="logo">RIDEON</h2>
+            <ul class="menu">
+                <li><a href="admin.html">Dashboard</a></li>
+                <li><a href="admin_vehicle.html">Vehicles</a></li>
+                <li><a href="admin_bookings.html">Bookings</a></li>
+                <li><a href="admin_profile.html">Profile</a></li>
+                <li><a href="users.html">Users</a></li>
+                <li><a href="index.html">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="dashboard-header">
+                <h1>Admin Dashboard</h1>
+                <div class="admin-profile">
+                    <a href="admin_profile.html"> <span class="profile-icon">A</span></a>
+                </div>
+            </header>
+            <section class="dashboard-body">
+                <!-- ADD YOUR CONTENT HERE -->
+                <h2>Users List</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contact Number</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <!-- Users will be inserted here dynamically -->
+                    </tbody>
+                </table>
+                <a href="admin_user.html"><button class="add-vehicle-btn">ADD USER</button></a>
+            </section>
+        </main>
+    </div>
+   
+
+    <script src="./js/users.js"></script>
+
+</body>
+</html>

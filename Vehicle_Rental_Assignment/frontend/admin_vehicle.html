@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Rental - Available Vehicles</title>
+    <link rel="stylesheet" href="./css/admin_vehicle.css">
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">RIDEON</h2>
+        <ul class="menu">
+            <li><a href="admin.html">Dashboard</a></li>
+            <li><a href="admin_vehicle.html">Vehicles</a></li>
+            <li><a href="admin_bookings.html">Bookings</a></li>
+            <li><a href="admin_profile.html">Profile</a></li>
+            <li><a href="users.html">Users</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="dashboard-header">
+            <h1>Admin Dashboard</h1>
+            <div class="admin-profile">
+                <a href="admin_profile.html"> <span class="profile-icon">A</span></a>
+            </div>
+        </header>
+        <section class="dashboard-body">
+            <!-- ADD YOUR CONTENT HERE -->
+            <div class="container">
+              
+      
+              <!-- Add Vehicle Button -->
+              <a href="add_vehicle.html">
+                  <button class="add-vehicle-btn">ADD VEHICLE</button>
+              </a>
+      
+              <!-- Vehicles Grid -->
+              <section class="vehicles-grid" id="vehicles-grid">
+                  <div class="loading">Loading vehicles...</div>
+              </section>
+          </div>
+      
+        </section>
+    </main>
+</div>
+
+   
+    <script src="./js/admin_vehicle.js"></script>
+
+</body>
+</html>

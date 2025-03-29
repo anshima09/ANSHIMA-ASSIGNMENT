@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RideOn- Login</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
+    
+    <!-- Favicon to show in browser tab -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome - We used font awesome icons to design-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-------------Top bar-- -->
+    <section class="top-bar">
+        <div class="top-bar-contact">
+            <span>Quick Support: &nbsp;</span>
+            <a href="tel:+91000000000" class="phone-link"><i class="fa fa-phone-alt mr-2"></i>+91-8966912290</a>
+            <span class="separator">|</span>
+            <a href="mailto:anshima54@gmail.com" class="email-link"><i class="fa fa-envelope"></i>ridon54@gmail.com</a>
+        </div>
+        <div class="top-bar-social">
+            <span>Follow us: </span>
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+        </div>
+    </section>
+    
+    <!-- Navbar Start -->
+    <section class="navbar-container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <h1 class="logo-text">RIDEON</h1>
+            </a>
+            <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="Toggle navigation">
+                <span class="toggle-icon"></span>
+            </button>
+            
+        </nav>
+    </section>
+
+    <!-- --------login start---- -->
+<section class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+</form>
+    <!-- <div class="link">
+      <a href="register.html">Don't have an account? Register</a>
+    </div> -->
+</section>
+
+    <!-- -------footer start -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="copyright">© RideOn. All Rights Reserved.</p>
+            <p class="designer">Designed by Anshima Sharma</p>
+        </div>
+    </footer>
+
+    <script src="./js/login.js"></script>
+    
+</body>
+</html>

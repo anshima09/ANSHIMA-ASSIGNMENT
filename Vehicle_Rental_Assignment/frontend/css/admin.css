@@ -1,0 +1,120 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Dashboard Layout */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  height: 1120px;
+  background: #333;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff4747;
+  margin-bottom: 20px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  margin: 15px 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  display: block;
+  padding: 8px 10px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.menu a:hover {
+  background: #555;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* Header (Red Admin Dashboard) */
+.dashboard-header {
+  background: #ff4757;
+  color: white;
+  padding: 25px 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Content Area */
+.dashboard-body {
+  padding: 20px;
+  font-size: 18px;
+  color: #000;
+}
+
+/* Admin Profile Icon */
+.admin-profile {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  background: white;
+  color: #ff4757;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.admin-profile a{
+  text-decoration: none;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+      flex-direction: column;
+  }
+  .sidebar {
+      width: 100%;
+      text-align: center;
+  }
+  .menu li {
+      display: inline-block;
+      margin: 10px;
+      height: 100px;
+  }
+}
