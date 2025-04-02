@@ -31,7 +31,7 @@ The Vehicle Rental System (VRS) is an online platform that streamlines the vehic
 ### Backend
 
 - **Java Spring Boot** - Backend framework for handling business logic.
-- **MySQL** - Database to store users, vehicles and booking information.
+- **POSTGRESQL** - Database to store users, vehicles and booking information.
 
 
 
