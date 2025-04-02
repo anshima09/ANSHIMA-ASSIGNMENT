@@ -79,18 +79,7 @@ nav {
     color: #fd4d40;
 }
 
-.profilePhoto .circularPhoto{
-    padding: 10px;
-    background-color: #F44336;;
-    color: #ffffff;
-    border-radius: 50%;
-    font-size: 1.0rem;
-    cursor: pointer;
-}
 
-.profilePhoto .circularPhoto:hover{
-    box-shadow: 1px 1px 3px 3px rgba(255, 255, 255, 1);
-}
 
 /* Navbar Toggle (for mobile) */
 .navbar-toggle {
@@ -109,13 +98,11 @@ nav {
     overflow: hidden;
 }
 
-/* Highway Animation */
 
 
 /* City Animation */
 .city {
     position: absolute;
-    /* bottom: 200px; */
     left: 0;
     width: 500%;
     height: 250px;
@@ -218,8 +205,8 @@ nav {
 
 .offer-banner {
     background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
-    border-radius: 0; /* Changed from 10px to make edges straight */
-    padding: 40px 20px; /* Increased vertical padding */
+    border-radius: 0; 
+    padding: 40px 20px; 
     text-align: center;
     box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
     color: white;
@@ -288,7 +275,7 @@ nav {
 }
 
 /* --------testimonial css--------- */
-/* Testimonials Section Styles */
+
 .testimonials-section {
     padding: 80px 0;
     background-color: #f9f9f9;
@@ -364,7 +351,6 @@ nav {
 
 
 /* -----footer start-------- */
-/* Footer Styles */
 .site-footer {
     background-color: white;
     color: black;

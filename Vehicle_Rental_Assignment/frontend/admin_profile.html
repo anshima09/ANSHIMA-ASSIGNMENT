@@ -27,6 +27,7 @@
         <!-- Main Content -->
         <main class="main-content">
             <header class="dashboard-header">
+                <button class="menu-toggle">☰</button>
                 <h1>Admin Dashboard</h1>
                 <div class="admin-profile">
                     <a href="admin_profile.html"> <span class="profile-icon">A</span></a>
@@ -88,6 +89,12 @@
         </main>
     </div>
     
-  
+    <script>
+        document
+          .querySelector(".menu-toggle")
+          .addEventListener("click", function () {
+            document.querySelector(".sidebar").classList.toggle("active");
+          });
+      </script>
 </body>
 </html>

@@ -9,7 +9,7 @@ async function login(event) {
 
     const response = await fetch(`http://localhost:8080/authentication/login?email=${email}&password=${password}`, {
         method: "GET"
-        // headers: { "Content-Type": "application/json" }
+        
     });
 
 
