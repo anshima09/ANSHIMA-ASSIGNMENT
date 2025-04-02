@@ -399,7 +399,7 @@ nav {
     }
     
     .navbar-menu {
-        display: none;
+        display: block;
     }
     
     .navbar-toggle {
