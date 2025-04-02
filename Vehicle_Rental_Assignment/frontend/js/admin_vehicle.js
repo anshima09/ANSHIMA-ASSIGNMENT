@@ -39,7 +39,7 @@ function renderVehicles(vehicles) {
                 <span class="vehicle-type">${vehicle.type}</span>
                 <div class="vehicle-info">Model: ${vehicle.model || "N/A"}</div>
                 <div class="vehicle-info">Reg: ${vehicle.registration_number}</div>
-                <div class="vehicle-price">$${vehicle.price_per_day}/day</div>
+                <div class="vehicle-price">Rs. ${vehicle.price_per_day}/day</div>
                 
             </div>
         </div>

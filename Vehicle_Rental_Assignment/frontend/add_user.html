@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Profile</title>
+    <title>User Registration</title>
+    <link rel="stylesheet" href="./css/add_user.css" />
     <link rel="stylesheet" href="./css/admin.css" />
-    <link rel="stylesheet" href="./css/admin_profile.css" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
   </head>
   <body>
@@ -39,37 +39,31 @@
           </div>
         </header>
         <section class="dashboard-body">
-          <!-- ADD YOUR CONTENT HERE -->
-          <section class="profile-section content">
-            <div class="profile-container">
-              <!-- Profile Main Content -->
-              <div class="profile-content">
-                <div class="profile-header">
-                  <h1><span class="badge-admin">ADMIN</span></h1>
-                  <p class="profile-email">admin@example.com</p>
-                </div>
-                <!-- Details Sections -->
-                <div class="details-grid">
-                  <div class="detail-card">
-                    <div class="card-header">
-                      <i class="fas fa-user-cog"></i>
-                      <h3>Admin Privileges</h3>
-                    </div>
-                    <ul class="privileges-list">
-                      <li><i class="fas fa-check"></i> User Management</li>
-                      <li><i class="fas fa-check"></i> Vehicle Management</li>
-                      <li><i class="fas fa-check"></i> View Bookings</li>
-                      <li><i class="fas fa-check"></i> System Settings</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <div class="container">
+            <h2>Sign Up</h2>
+            <form id="registerForm">
+              <label for="name">Full Name:</label>
+              <input type="text" id="name" required />
+
+              <label for="email">Email:</label>
+              <input type="email" id="email" required />
+
+              <label for="password">Password:</label>
+              <input type="password" id="password" required />
+
+              <label for="contact">Contact Number:</label>
+              <input type="text" id="contact" required />
+
+              <button class="signup-btn" type="submit">Sign Up</button>
+            </form>
+
+            <div class="message" id="message"></div>
+          </div>
         </section>
       </main>
     </div>
 
+    <script src="./js/add_user.js"></script>
     <script>
       document
         .querySelector(".menu-toggle")

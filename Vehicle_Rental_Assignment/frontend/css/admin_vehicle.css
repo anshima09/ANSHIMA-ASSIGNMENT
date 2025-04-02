@@ -37,7 +37,7 @@ h2 {
 /* Vehicles Grid */
 .vehicles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 25px;
     margin-top: 5px;
 }
@@ -161,7 +161,7 @@ h2 {
     cursor: pointer;
     transition: all 0.3s;
     border: none;
-    margin-left: 35%;
+    margin: auto;
 }
 
 .book-btn-primary {

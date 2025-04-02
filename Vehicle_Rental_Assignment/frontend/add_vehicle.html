@@ -1,83 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Vehicle</title>
-    <link rel="stylesheet" href="./css/add_vehicle.css">
-    <link rel="stylesheet" href="./css/admin.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./css/add_vehicle.css" />
+    <link rel="stylesheet" href="./css/admin.css" />
+  </head>
+  <body>
     <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h2 class="logo">RIDEON</h2>
-            <ul class="menu">
-                <li><a href="admin.html">Dashboard</a></li>
-                <li><a href="admin_vehicle.html">Vehicles</a></li>
-                <li><a href="admin_bookings.html">Bookings</a></li>
-                <li><a href="admin_profile.html">Profile</a></li>
-                <li><a href="users.html">Users</a></li>
-                <li><a href="index.html">Logout</a></li>
-            </ul>
-        </aside>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <button class="close-menu">&times;</button>
+        <h2 class="logo">RIDEON</h2>
+        <ul class="menu">
+          <li><a href="admin.html">Dashboard</a></li>
+          <li><a href="admin_vehicle.html">Vehicles</a></li>
+          <li><a href="admin_bookings.html">Bookings</a></li>
+          <li><a href="admin_profile.html">Profile</a></li>
+          <li><a href="admin_users.html">Users</a></li>
+          <li><a href="index.html">Logout</a></li>
+        </ul>
+      </aside>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="dashboard-header">
-                <button class="menu-toggle">☰</button>
-                <h1>Admin Dashboard</h1>
-                <div class="admin-profile">
-                    <a href="admin_profile.html"> <span class="profile-icon">A</span></a>
-                </div>
-            </header>
-            <section class="dashboard-body">
-                <div class="container">
-                    <h2>Add Vehicle</h2>
-                    <form id="vehicleForm">
-                        <label for="name">Vehicle Name:</label>
-                        <input type="text" id="name" required>
-            
-                        <label for="type">Vehicle Type:</label>
-                        <select id="type" required>
-                            <option value="CAR">Car</option>
-                            <option value="BIKE">Bike</option>
-                        </select>
-            
-                        <label for="model">Model Year:</label>
-                        <input type="text" id="model" required>
-            
-                        <label for="registrationNumber">Registration Number:</label>
-                        <input type="text" id="registrationNumber" required>
-            
-                        <label for="availability">Availability:</label>
-                        <select id="availability" required>
-                            <option value="AVAILABLE">Available</option>
-                            <option value="UNDER_MAINTENANCE">Under Maintenance</option>
-                        </select>
-            
-                        <label for="price">Price Per Day ($):</label>
-                        <input type="number" id="price" required step="0.01">
-            
-                        <button type="submit">Add Vehicle</button>
-                    </form>
-            
-                    <div class="message" id="message"></div>
-                </div>
-               
-            </section>
-        </main>
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="dashboard-header">
+          <button class="menu-toggle">☰</button>
+          <h1>Admin Dashboard</h1>
+          <div class="admin-profile">
+            <a href="admin_profile.html">
+              <span class="profile-icon">A</span></a
+            >
+          </div>
+        </header>
+        <section class="dashboard-body">
+          <div class="container">
+            <h2 class="vehicle-heading">Add Vehicle</h2>
+            <form id="vehicleForm">
+              <label for="name">Vehicle Name:</label>
+              <input type="text" id="name" required />
+
+              <label for="type">Vehicle Type:</label>
+              <select id="type" required>
+                <option value="CAR">Car</option>
+                <option value="BIKE">Bike</option>
+              </select>
+
+              <label for="model">Model Year:</label>
+              <input type="text" id="model" required />
+
+              <label for="registrationNumber">Registration Number:</label>
+              <input type="text" id="registrationNumber" required />
+
+              <label for="availability">Availability:</label>
+              <select id="availability" required>
+                <option value="AVAILABLE">Available</option>
+                <option value="UNDER_MAINTENANCE">Under Maintenance</option>
+              </select>
+
+              <label for="price">Price Per Day (Rs):</label>
+              <input type="number" id="price" required step="0.01" />
+
+              <button class="vehicle-btn" type="submit">Add Vehicle</button>
+            </form>
+
+            <div class="message" id="message"></div>
+          </div>
+        </section>
+      </main>
     </div>
-    
 
     <script src="./js/add_vehicle.js"></script>
     <script>
-        document
-          .querySelector(".menu-toggle")
-          .addEventListener("click", function () {
-            document.querySelector(".sidebar").classList.toggle("active");
-          });
-      </script>
-
-</body>
+      document
+        .querySelector(".menu-toggle")
+        .addEventListener("click", function () {
+          document.querySelector(".sidebar").classList.toggle("active");
+        });
+      document
+        .querySelector(".close-menu")
+        .addEventListener("click", function () {
+          document.querySelector(".sidebar").classList.remove("active");
+        });
+    </script>
+  </body>
 </html>

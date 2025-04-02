@@ -44,7 +44,7 @@ const API_URL = "http://localhost:8080/booking/getAllBookings?email=admin@exampl
                     </td>
                     <td>${booking.startDate}</td>
                     <td>${booking.endDate}</td>
-                    <td>$${booking.price.toFixed(2)}</td>
+                    <td>Rs.${booking.price.toFixed(2)}</td>
                     <td>${booking.user.name}</td>
                     <td>${booking.vehicle.name}</td>
                 </tr>

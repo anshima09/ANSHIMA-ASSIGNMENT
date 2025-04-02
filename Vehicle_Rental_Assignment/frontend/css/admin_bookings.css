@@ -2,10 +2,10 @@
 
 .container {
     max-width: 1200px;
-    margin: 3% auto;
+    margin: auto;
 }
 
-h2 {
+.booking-heading {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -30,6 +30,9 @@ h2 {
     background-color: #ff4757;
     color: white;
     font-weight: bold;
+}
+.bookings-table td{
+    font-size: 14px;
 }
 
 .bookings-table tr:hover {
@@ -57,5 +60,9 @@ h2 {
     .bookings-table th, .bookings-table td {
         padding: 8px;
         font-size: 14px;
+    }
+
+    .container{
+        margin-left: -3%;
     }
 }

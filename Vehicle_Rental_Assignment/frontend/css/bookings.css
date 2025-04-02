@@ -7,6 +7,7 @@
 
 h2 {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 /* Table Styles */
@@ -29,6 +30,10 @@ h2 {
     background-color: #ff4757;
     color: white;
     font-weight: bold;
+}
+
+.bookings-table td{
+    font-size: 14px;
 }
 
 .bookings-table tr:hover {

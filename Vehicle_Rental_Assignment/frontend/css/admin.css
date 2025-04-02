@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  height: 100vh; 
+  height: 100vh;
   overflow-y: auto;
   transition: transform 0.3s ease-in-out;
 }
@@ -70,6 +70,14 @@
   min-height: 100vh; /* Ensures content expands dynamically */
 }
 
+.welcome-box {
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1s ease-in-out;
+}
+
 /* Header (Admin Dashboard) */
 .dashboard-header {
   background: #ff4757;
@@ -89,7 +97,7 @@
 
 /* Content Area */
 .dashboard-body {
-  padding: 80px 20px 20px; 
+  padding: 80px 20px 20px;
   font-size: 18px;
   color: #000;
   margin-top: 3%;
@@ -131,7 +139,6 @@
   left: 20px;
 }
 
-
 .close-menu {
   display: none;
   font-size: 24px;
@@ -168,9 +175,9 @@
 
   .menu-toggle {
     display: block;
-    font-size: 45px;
+    font-size: 30px;
     background: white;
-    padding: 1%;
+    padding: 0.5%;
     color: #ff4757;
     border-radius: 15%;
     border: none;
@@ -189,6 +196,8 @@
     margin-left: 0;
     width: 100%;
   }
+
+ 
 
   .menu {
     margin-top: 15%;
@@ -220,8 +229,8 @@
     top: 0;
     z-index: 1000;
   }
-  
-  .dashboard-body{
+
+  .dashboard-body {
     margin-top: 8%;
     margin-left: 3%;
   }
