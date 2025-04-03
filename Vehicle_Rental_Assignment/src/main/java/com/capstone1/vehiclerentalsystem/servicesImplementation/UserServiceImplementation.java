@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 import com.capstone1.vehiclerentalsystem.entities.User;
 import com.capstone1.vehiclerentalsystem.entities.User.Role;
 import com.capstone1.vehiclerentalsystem.repositories.UserRepository;
-import com.capstone1.vehiclerentalsystem.services.LoginService;
+import com.capstone1.vehiclerentalsystem.services.UserService;
 import jakarta.annotation.PostConstruct;
 
 @Service
-public class LoginServiceImplementation implements LoginService {
+public class UserServiceImplementation implements UserService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -40,7 +40,6 @@ public class LoginServiceImplementation implements LoginService {
     public User getUserByEmailAndPassword(String email, String password) {
 
         User user = userRepository.findUserByEmail(email).orElse(null);
-        System.out.println("login service data");
         System.out.println(user);
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             return user;

@@ -51,7 +51,7 @@ public class Vehicle {
 
     @JsonIgnore
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<BookingVehicle> bookingsByVehicle = new ArrayList<>();
+    private List<Booking> bookingsByVehicle = new ArrayList<>();
 
     public Vehicle() {
     }
@@ -125,17 +125,10 @@ public class Vehicle {
         this.price_per_day = price_per_day;
     }
 
-    public void addBooking(BookingVehicle b) {
+    public void addBooking(Booking b) {
         bookingsByVehicle.add(b);
     }
 
-    public void removeBooking(BookingVehicle b) {
-        bookingsByVehicle.remove(b);
-    }
-
-    public List<BookingVehicle> getBookingsByVehicle() {
-        return bookingsByVehicle;
-    }
 
     @Override
     public String toString() {

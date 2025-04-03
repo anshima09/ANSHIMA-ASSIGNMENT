@@ -5,15 +5,15 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.capstone1.vehiclerentalsystem.entities.BookingVehicle;
+import com.capstone1.vehiclerentalsystem.entities.Booking;
 
 @Service
-public interface BookingVehicleService {
+public interface BookingService {
 
     public ResponseEntity<String> addBooking(String email, String registration_no, String startDate, String endDate);
 
-    public ResponseEntity<List<BookingVehicle>> getBookings(String email);
+    public ResponseEntity<List<Booking>> getBookings(String email);
 
-    public ResponseEntity<List<BookingVehicle>> getAllBookings(String email);
+    public ResponseEntity<List<Booking>> getAllBookings(String email);
 
 }

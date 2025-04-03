@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capstone1.vehiclerentalsystem.entities.BookingVehicle;
-import com.capstone1.vehiclerentalsystem.services.BookingVehicleService;
+import com.capstone1.vehiclerentalsystem.entities.Booking;
+import com.capstone1.vehiclerentalsystem.services.BookingService;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/booking")
-public class BookingVehicleController {
+public class BookingController {
 
     @Autowired
-    BookingVehicleService bookingVehicleService;
+    BookingService bookingVehicleService;
 
     // Adding the Booking
     @PostMapping("/add")
@@ -38,12 +38,12 @@ public class BookingVehicleController {
     }
 
     @GetMapping("/getAllBookings")
-    public ResponseEntity<List<BookingVehicle>> getAllBookedVehicles(@RequestParam String email) {
+    public ResponseEntity<List<Booking>> getAllBookedVehicles(@RequestParam String email) {
         return bookingVehicleService.getAllBookings(email);
     }
 
     @GetMapping("/getByEmail")
-    public ResponseEntity<List<BookingVehicle>> getBookingHistoryByMail(@RequestParam String email) {
+    public ResponseEntity<List<Booking>> getBookingHistoryByMail(@RequestParam String email) {
         return bookingVehicleService.getBookings(email);
     }
 }

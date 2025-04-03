@@ -16,9 +16,9 @@ import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "booking_vehicle")
-public class BookingVehicle {
+public class Booking {
     public enum BookingStatus {
-        CONFIRMED, CANCELLED;
+        CONFIRMED;
     }
 
     @Id
@@ -47,10 +47,10 @@ public class BookingVehicle {
     @Version
     private int version;
 
-    public BookingVehicle() {
+    public Booking() {
     }
 
-    public BookingVehicle(LocalDate startDate, LocalDate endDate, double price,
+    public Booking(LocalDate startDate, LocalDate endDate, double price,
             BookingStatus bookingStatus) {
 
         this.bTime = LocalDateTime.now();

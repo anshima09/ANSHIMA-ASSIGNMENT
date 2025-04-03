@@ -48,7 +48,7 @@ public class User {
     @JsonIgnore
     @JsonBackReference(value = "booking-user")
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<BookingVehicle> bookings = new ArrayList<>();
+    private List<Booking> bookings = new ArrayList<>();
 
     public User() {
         // this.user_id = idCounter++;
@@ -115,17 +115,15 @@ public class User {
         this.role = role;
     }
 
-    public List<BookingVehicle> getBookings() {
+    public List<Booking> getBookings() {
         return bookings;
     }
 
-    public void addBooking(BookingVehicle b) {
+    public void addBooking(Booking b) {
         bookings.add(b);
     }
 
-    public void removeBooking(BookingVehicle b) {
-        bookings.remove(b);
-    }
+   
 
     @Override
     public String toString() {

@@ -6,9 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.capstone1.vehiclerentalsystem.entities.Vehicle;
-import com.capstone1.vehiclerentalsystem.entities.Vehicle.VehicleType;
 import com.capstone1.vehiclerentalsystem.repositories.VehicleRepository;
-import com.capstone1.vehiclerentalsystem.services.LoginService;
+import com.capstone1.vehiclerentalsystem.services.UserService;
 import com.capstone1.vehiclerentalsystem.services.VehicleService;
 
 @Service
@@ -17,7 +16,7 @@ public class VehicleServiceImplementation implements VehicleService {
     @Autowired
     VehicleRepository vehicleRepository;
     @Autowired
-    LoginService loginService;
+    UserService loginService;
 
     @Override
     public ResponseEntity<String> addVehicle(String email, Vehicle vehicle) {
@@ -44,10 +43,7 @@ public class VehicleServiceImplementation implements VehicleService {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(all);
     }
 
-    public List<Vehicle> getByType(String type) {
-        VehicleType vType = VehicleType.valueOf(type.toUpperCase());
-        return vehicleRepository.findAllByType(vType);
-    }
+    
 
     @Override
     public Vehicle getByRegistrationNumber(String registration_no) {

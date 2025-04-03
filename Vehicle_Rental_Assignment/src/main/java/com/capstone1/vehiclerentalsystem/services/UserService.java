@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.capstone1.vehiclerentalsystem.entities.User;
 
 @Service
-public interface LoginService {
+public interface UserService {
 
     User getUserByEmailAndPassword(String email, String password);
 

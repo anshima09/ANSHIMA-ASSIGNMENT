@@ -16,21 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone1.vehiclerentalsystem.entities.User;
 import com.capstone1.vehiclerentalsystem.repositories.UserRepository;
-import com.capstone1.vehiclerentalsystem.services.LoginService;
+import com.capstone1.vehiclerentalsystem.services.UserService;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/authentication")
-public class UserLoginController {
+public class UserController {
     @Autowired
-    LoginService loginService;
+    UserService loginService;
     @Autowired
     UserRepository repo;
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello World";
-    }
 
     @GetMapping("/login")
     public ResponseEntity<User> getUserByEmailAndPassword(@RequestParam String email, @RequestParam String password) {
