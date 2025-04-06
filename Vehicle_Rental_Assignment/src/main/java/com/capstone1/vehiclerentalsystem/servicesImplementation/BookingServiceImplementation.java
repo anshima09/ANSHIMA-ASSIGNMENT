@@ -28,14 +28,14 @@ public class BookingServiceImplementation implements BookingService {
     @Autowired
     BookingRepository bookingRepository;
     @Autowired
-    UserService loginService;
+    UserService userService;
     @Autowired
     VehicleService vehicleService;
 
 
     public ResponseEntity<String> addBooking(String email, String registration_no, String startDate, String endDate) {
         try {
-            User u1 = loginService.getUserByEmail(email);
+            User u1 = userService.getUserByEmail(email);
             Vehicle v1 = vehicleService.getByRegistrationNumber(registration_no);
             LocalDate start = LocalDate.parse(startDate);
             LocalDate end = LocalDate.parse(endDate);
@@ -73,7 +73,7 @@ public class BookingServiceImplementation implements BookingService {
 
         try {
 
-            User user = loginService.getUserByEmail(email);
+            User user = userService.getUserByEmail(email);
             List<Booking> bookingsList = bookingRepository.findByUser(user);
             return ResponseEntity.ok().body(bookingsList);
 
@@ -86,7 +86,7 @@ public class BookingServiceImplementation implements BookingService {
 
     public ResponseEntity<List<Booking>> getAllBookings(String email) {
         try {
-            User user = loginService.getUserByEmail(email);
+            User user = userService.getUserByEmail(email);
             if (user.getRole() == Role.ADMIN)
                 return ResponseEntity.ok().body((List<Booking>) bookingRepository.findAll());
             else

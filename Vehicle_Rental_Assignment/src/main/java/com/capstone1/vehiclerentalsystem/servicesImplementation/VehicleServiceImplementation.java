@@ -16,12 +16,12 @@ public class VehicleServiceImplementation implements VehicleService {
     @Autowired
     VehicleRepository vehicleRepository;
     @Autowired
-    UserService loginService;
+    UserService userService;
 
     @Override
     public ResponseEntity<String> addVehicle(String email, Vehicle vehicle) {
         try {
-            if (loginService.isAdmin(email)) {
+            if (userService.isAdmin(email)) {
                 System.out.println(vehicle);
                 vehicleRepository.save(vehicle);
                 return ResponseEntity.ok("Vehicle Added Successfully");

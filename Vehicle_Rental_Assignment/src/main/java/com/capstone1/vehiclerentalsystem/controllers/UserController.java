@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone1.vehiclerentalsystem.entities.User;
-import com.capstone1.vehiclerentalsystem.repositories.UserRepository;
 import com.capstone1.vehiclerentalsystem.services.UserService;
 
 @CrossOrigin(origins = "*")
@@ -23,15 +22,14 @@ import com.capstone1.vehiclerentalsystem.services.UserService;
 @RequestMapping("/authentication")
 public class UserController {
     @Autowired
-    UserService loginService;
-    @Autowired
-    UserRepository repo;
+    UserService userService;
+   
 
 
     @GetMapping("/login")
     public ResponseEntity<User> getUserByEmailAndPassword(@RequestParam String email, @RequestParam String password) {
         try {
-            User u1 = loginService.getUserByEmailAndPassword(email, password);
+            User u1 = userService.getUserByEmailAndPassword(email, password);
             if (u1 != null)
                 return ResponseEntity.ok().body(u1);
             else
@@ -48,7 +46,7 @@ public class UserController {
         System.out.println("Hello World");
         System.out.println(user);
         try {
-            u1 = loginService.storeUserData(user);
+            u1 = userService.storeUserData(user);
             if (u1 != null) {
                 return ResponseEntity.ok().body(u1);
             }
@@ -65,7 +63,7 @@ public class UserController {
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<User>> getAllUsers(@RequestHeader("Admin-Email") String email) {
         try {
-            return loginService.getAllUsers(email);
+            return userService.getAllUsers(email);
 
         } catch (Exception e) {
             e.printStackTrace();
