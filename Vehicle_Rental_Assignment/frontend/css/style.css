@@ -120,11 +120,6 @@ nav {
     z-index: 2;
 }
 
-.car img {
-    width: 400px;
-    animation: car-shake 1s linear infinite;
-}
-
 /* Hero Content */
 .hero-content {
     position: absolute;
@@ -164,12 +159,7 @@ nav {
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* Animations */
-@keyframes highway {
-    100% {
-        transform: translateX(-3000px);
-    }
-}
+
 
 @keyframes city {
     100% {
@@ -177,23 +167,6 @@ nav {
     }
 }
 
-@keyframes wheel-rotation {
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes car-shake {
-    0% {
-        transform: translateY(-1px);
-    }
-    50% {
-        transform: translateY(1px);
-    }
-    100% {
-        transform: translateY(-1px);
-    }
-}
 
 /* --------------banner css---------- */
 .special-offer {

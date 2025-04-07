@@ -47,7 +47,7 @@ public class User {
 
     @JsonIgnore
     @JsonBackReference(value = "booking-user")
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Booking> bookings = new ArrayList<>();
 
     public User() {
