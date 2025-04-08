@@ -76,7 +76,7 @@ nav {
 }
 
 .navbar-menu a:hover {
-    color: #fd4d40;
+    color: #ff4757;
 }
 
 
@@ -145,7 +145,7 @@ nav {
 .btn {
     display: inline-block;
     padding: 15px 30px;
-    background: #fd4d40;
+    background: #ff4757;
     color: white;
     border-radius: 30px;
     text-decoration: none;
@@ -216,24 +216,8 @@ nav {
     text-decoration: underline;
 }
 
-.register-btn {
-    background: white;
-    color: #ff1a1a;
-    border: none;
-    padding: 12px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
 
-.register-btn:hover {
-    background: #ffeb3b;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
+
 
 @keyframes pulse {
     0% {
@@ -275,7 +259,7 @@ nav {
     display: block;
     width: 80px;
     height: 3px;
-    background: #fd4d40;
+    background: #ff4757;
     margin: 15px auto 0;
 }
 
@@ -310,7 +294,7 @@ nav {
 
 .client-title {
     font-size: 14px;
-    color: #fd4d40;
+    color: #ff4757;
     font-style: italic;
     margin: 0;
 }
