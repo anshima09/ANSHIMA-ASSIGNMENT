@@ -26,7 +26,7 @@ public class VehicleController {
     // @Autowired
 
     @GetMapping("/getAllVehicles")
-    public ResponseEntity<List<Vehicle>> getMethodName() {
+    public ResponseEntity<List<Vehicle>> getVehicles() {
         return vehicleService.getAllVehicles();
     }
 
