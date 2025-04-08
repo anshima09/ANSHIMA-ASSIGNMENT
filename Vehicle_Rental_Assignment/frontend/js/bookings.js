@@ -43,7 +43,7 @@ function renderBookings(bookings) {
             </td>
             <td>${booking.startDate}</td>
             <td>${booking.endDate}</td>
-            <td>$${booking.price.toFixed(2)}</td>
+            <td>Rs.${booking.price.toFixed(2)}</td>
             <td>${booking.vehicle.name}</td>
             <td>${booking.vehicle.model}</td>
             <td>${booking.vehicle.registration_number}</td>
