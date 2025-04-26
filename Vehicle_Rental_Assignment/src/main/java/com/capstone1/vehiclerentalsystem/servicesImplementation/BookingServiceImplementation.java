@@ -40,12 +40,16 @@ public class BookingServiceImplementation implements BookingService {
             LocalDate start = LocalDate.parse(startDate);
             LocalDate end = LocalDate.parse(endDate);
 
+            if (end.isBefore(start)) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("End date cannot be earlier than start date.");
+            }
 
             // calculating total price;
             long days = ChronoUnit.DAYS.between(start, end) + 1; // including the initial too
             System.out.println("Total Days are : " + days);
             double totalPrice = v1.getPrice_per_day() * days;
 
+            
             Booking booking = new Booking();
             booking.setUser(u1);
             booking.setVehicle(v1);
@@ -61,6 +65,7 @@ public class BookingServiceImplementation implements BookingService {
             System.out.println(bookSaved);
 
             return ResponseEntity.ok("Successfully Booked");
+            
 
         } catch (Exception e) {
             e.printStackTrace();
