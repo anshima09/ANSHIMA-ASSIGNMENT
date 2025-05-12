@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,9 +37,18 @@ public class BookingServiceImplementation implements BookingService {
     public ResponseEntity<String> addBooking(String email, String registration_no, String startDate, String endDate) {
         try {
             User u1 = userService.getUserByEmail(email);
+            if (u1 == null) {
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with email: " + email);
+}
             Vehicle v1 = vehicleService.getByRegistrationNumber(registration_no);
+            
+            if (v1 == null) {
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vehicle not found with registration number: " + registration_no);
+}
             LocalDate start = LocalDate.parse(startDate);
             LocalDate end = LocalDate.parse(endDate);
+
+            System.out.println("Date is correct huraahhhhhhhhhhhhhh");
 
             if (end.isBefore(start)) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("End date cannot be earlier than start date.");
@@ -101,5 +111,30 @@ public class BookingServiceImplementation implements BookingService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ArrayList<>());
         }
     }
+
+    @Override
+public ResponseEntity<String> deleteBooking(String email, Integer bookingId) {
+    try {
+        User user = userService.getUserByEmail(email);
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        // Check if the user is the owner of the booking or an admin
+        if (user.getRole() == Role.ADMIN || booking.getUser().getEmail().equals(email)) {
+            bookingRepository.delete(booking);
+            return ResponseEntity.ok("Booking deleted successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You are not authorized to delete this booking");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong while deleting the booking");
+    }
+}
+
+@Override
+public Booking getBookingById(Integer bookingId) {
+    return bookingRepository.findById(bookingId).orElse(null);
+}
 
 }

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/booking/getAllBookings?email=admin@example.com"; 
+const API_URL = "http://localhost:8080/booking/getAllBookings?email=admin89669@example.com"; 
 
         // Function to fetch and display bookings
         async function fetchBookings() {

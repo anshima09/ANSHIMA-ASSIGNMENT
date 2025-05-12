@@ -18,10 +18,12 @@ async function login(event) {
         console.log(data);
         console.log(data.role);
         if(data.role == "ADMIN"){
+            localStorage.setItem("isLoggedIn", "true");
             localStorage.setItem("admin",JSON.stringify(data));;
             window.location.href = "admin.html";
         }
         else{
+            localStorage.setItem("isLoggedIn", "true");
             localStorage.setItem("user",JSON.stringify(data));;
            window.location.href = "home.html";
         }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,10 @@ public class BookingController {
 
     @Autowired
     BookingService bookingVehicleService;
+
+    
+  
+
 
     // Adding the Booking
     @PostMapping("/add")
@@ -46,4 +51,17 @@ public class BookingController {
     public ResponseEntity<List<Booking>> getBookingHistoryByMail(@RequestParam String email) {
         return bookingVehicleService.getBookings(email);
     }
+
+    @DeleteMapping("/delete")
+public ResponseEntity<String> deleteBooking(@RequestParam String email, @RequestParam Integer bookingId) {
+    try {
+        return bookingVehicleService.deleteBooking(email, bookingId);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong while deleting the booking");
+    }
+}
+
+
+
 }

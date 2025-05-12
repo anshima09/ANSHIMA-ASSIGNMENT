@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vehicle Rental - Available Vehicles</title>
+    <title>Admin- Adding Vehicles</title>
     <link rel="stylesheet" href="./css/admin_vehicle.css" />
     <link rel="stylesheet" href="./css/admin.css" />
     <link
@@ -27,7 +27,7 @@
           <li><a href="admin_bookings.html">Bookings</a></li>
           <li><a href="admin_profile.html">Profile</a></li>
           <li><a href="admin_users.html">Users</a></li>
-          <li><a href="index.html">Logout</a></li>
+          <button style="background-color: transparent; border: none;" onclick="logout()"><li><a>Logout</a></li></button>
         </ul>
       </aside>
 
@@ -72,5 +72,21 @@
           document.querySelector(".sidebar").classList.remove("active");
         });
     </script>
+    <script>
+      // Redirect to login page if the user is not logged in
+      if (!localStorage.getItem("isLoggedIn")) {
+          window.location.href = "index.html"; // Redirect to the login page
+      }
+  </script>
+   <script>
+    function logout() {
+    // Clear login state from localStorage
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("admin");
+
+    // Redirect to the login page
+    window.location.href = "index.html";
+}
+  </script>
   </body>
 </html>

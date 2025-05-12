@@ -87,8 +87,8 @@
                     <a href="home.html" class="nav-link">HOME</a>
                     <a href="about.html" class="nav-link">ABOUT</a>
                     <a href="vehicles.html" class="nav-link">VEHICLES</a>
-                    <a href="bookings.html" class="nav-link">BOOKINGS</a>
-                    <a href="index.html" class="nav-link">LOGOUT</a>
+                    <a href="bookings.html" class="nav-link">PROFILE</a>
+                    <button style="border-style: none; padding: 7px; border-radius: 10px;" onclick="logout()"><a class="nav-link">LOGOUT</a></button>
                 </div>
             </div>
             
@@ -166,6 +166,21 @@
         </div>
     </footer>
 
+    <script>
+        // Redirect to login page if the user is not logged in
+        if (!localStorage.getItem("isLoggedIn")) {
+            window.location.href = "index.html"; // Redirect to the login page
+        }
+    </script>
+    <script>
+        function logout() {
+        // Clear login state from localStorage
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("user");
     
+        // Redirect to the login page
+        window.location.href = "index.html";
+    }
+    </script>
 </body>
 </html>

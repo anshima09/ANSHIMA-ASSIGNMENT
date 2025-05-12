@@ -36,3 +36,25 @@
   .link a{
     color: #ff4757;
   }
+
+
+  .signup-line{
+    margin-top: 5px;
+    text-align: center;
+  }
+
+.signup-btn {
+    background-color: #ff4757; /* Blue background */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 14px; /* Font size */
+    margin-top: 10px; /* Add spacing above the button */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.signup-btn:hover {
+    background-color: #ff4757; /* Darker blue on hover */
+}

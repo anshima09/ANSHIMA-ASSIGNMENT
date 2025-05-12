@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RideOn- Login</title>
+    <title>RideOn- SignUp</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/login.css" />
 
@@ -64,20 +64,33 @@
     </section>
 
     <!-- --------login start---- -->
-    <section class="container">
-      <h2>Login</h2>
-      <form id="loginForm">
-        <input type="email" id="email" placeholder="Email" />
-        <input type="password" id="password" placeholder="Password" />
-        <button onclick="login()">Login</button>
-      </form>
-      <p class="signup-line">
-        Don't have an account?
-        <button type="button" class="signup-btn" onclick="redirectToSignup()">
-          Sign Up
-        </button>
-      </p>
-    </section>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form id="registerForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <div id="emailError" style="color: red; font-size: 12px; display: none;">Please enter a valid @gmail.com email address.</div>
+           
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="text" id="contact" required>
+
+            <button type="submit" onclick="redirectToHome()">Sign Up</button>
+        </form>
+        
+        <div class="message" id="message"></div>
+        <p class="signup-line">
+          Already have an account?
+          <button type="button" class="signup-btn" onclick="redirectToLogin()">
+            Login
+          </button>
+        </p>
+    </div>
 
     <!-- -------footer start -->
     <footer class="site-footer">
@@ -87,10 +100,13 @@
       </div>
     </footer>
 
-    <script src="./js/login.js"></script>
+    <script src="./js/signup.js"></script>
     <script>
-      function redirectToSignup() {
-        window.location.href = "signup.html"; // Replace with the actual path to your signup page
+      function redirectToHome() {
+        window.location.href = "home.html"; // Replace with the actual path to your signup page
+      }
+      function redirectToLogin() {
+        window.location.href = "index.html"; // Replace with the actual path to your signup page
       }
     </script>
   </body>

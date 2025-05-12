@@ -1,13 +1,14 @@
 const API_URL = "http://localhost:8080/vehicle/getAllVehicles";
 let selectedVehicleRegNo = "";
+let allVehicles = []; // Store all vehicles for filtering
 
 // Fetch Vehicles
 async function fetchVehicles() {
     try {
         const response = await fetch(API_URL);
         if (!response.ok) throw new Error("Failed to fetch vehicles");
-        const vehicles = await response.json();
-        renderVehicles(vehicles);
+        allVehicles = await response.json(); // Store all vehicles
+        renderVehicles(allVehicles, "all"); // Initially show all vehicles
     } catch (error) {
         console.error("Error fetching vehicles:", error);
         document.getElementById("vehicles-grid").innerHTML = `<div class="loading">Failed to load vehicles. Try again later.</div>`;
@@ -15,15 +16,20 @@ async function fetchVehicles() {
 }
 
 // Render Vehicles
-function renderVehicles(vehicles) {
+function renderVehicles(vehicles, category) {
     const vehiclesGrid = document.getElementById("vehicles-grid");
 
-    if (vehicles.length === 0) {
-        vehiclesGrid.innerHTML = `<div class="loading">No vehicles available.</div>`;
+    // Filter vehicles based on the selected category
+    const filteredVehicles = category === "all"
+        ? vehicles
+        : vehicles.filter(vehicle => vehicle.type.toLowerCase() === category);
+
+    if (filteredVehicles.length === 0) {
+        vehiclesGrid.innerHTML = `<div class="loading">No vehicles available in this category.</div>`;
         return;
     }
 
-    vehiclesGrid.innerHTML = vehicles.map(vehicle => `
+    vehiclesGrid.innerHTML = filteredVehicles.map(vehicle => `
         <div class="vehicle-card">
             <div class="vehicle-image">
                 <i class="fas fa-${vehicle.type === "CAR" ? "car" : "motorcycle"}"></i>
@@ -45,6 +51,16 @@ function renderVehicles(vehicles) {
             </div>
         </div>
     `).join("");
+}
+
+// Filter Vehicles by Category
+function filterVehicles(category) {
+    // Update active tab
+    document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+    document.querySelector(`.tab-btn[onclick="filterVehicles('${category}')"]`).classList.add("active");
+
+    // Render vehicles for the selected category
+    renderVehicles(allVehicles, category);
 }
 
 // Open Booking Form

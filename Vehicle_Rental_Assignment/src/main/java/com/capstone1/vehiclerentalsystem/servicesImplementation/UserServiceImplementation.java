@@ -8,10 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.capstone1.vehiclerentalsystem.entities.User;
-import com.capstone1.vehiclerentalsystem.entities.User.Role;
+//import com.capstone1.vehiclerentalsystem.entities.User.Role;
 import com.capstone1.vehiclerentalsystem.repositories.UserRepository;
 import com.capstone1.vehiclerentalsystem.services.UserService;
-import jakarta.annotation.PostConstruct;
+//import jakarta.annotation.PostConstruct;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -22,20 +22,21 @@ public class UserServiceImplementation implements UserService {
     @Autowired
     UserRepository userRepository;
 
-    @PostConstruct
+    /*@PostConstruct
     public void init() {
-        // Check if admin already exists
-        if (userRepository.findById(10).isEmpty()) {
+        //Check if admin already exists
+        if (userRepository.findById(20).isEmpty()) {
             User admin = new User();
             admin.setName("Admin");
-            admin.setEmail("admin@example.com");
-            admin.setPassword(passwordEncoder.encode("admin123")); // Change this!
+            admin.setEmail("admin89669@example.com");
+            admin.setPassword(passwordEncoder.encode("Admin@89669")); 
             admin.setRole(Role.ADMIN);
             userRepository.save(admin);
 
             System.out.println("Default admin created!");
         }
-    }
+    } */
+    
     @Override
     public User getUserByEmailAndPassword(String email, String password) {
 

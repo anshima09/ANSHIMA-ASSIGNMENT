@@ -10,7 +10,7 @@ document.getElementById("vehicleForm").addEventListener("submit", function(event
         price_per_day: parseFloat(document.getElementById("price").value)
     };
 
-    fetch("http://localhost:8080/vehicle/add/admin@example.com", {
+    fetch("http://localhost:8080/vehicle/add/admin89669@example.com", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

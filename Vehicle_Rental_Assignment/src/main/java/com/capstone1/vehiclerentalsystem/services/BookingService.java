@@ -16,4 +16,9 @@ public interface BookingService {
 
     public ResponseEntity<List<Booking>> getAllBookings(String email);
 
+    public ResponseEntity<String> deleteBooking(String email, Integer bookingId);
+
+    Booking getBookingById(Integer bookingId);
+
+
 }

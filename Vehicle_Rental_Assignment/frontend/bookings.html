@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Bookings</title>
+    <title>User Profile</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/bookings.css">
      <!-- Favicon to show in browser tab -->
@@ -50,14 +50,27 @@
                     <a href="home.html" class="nav-link">HOME</a>
                     <a href="about.html" class="nav-link">ABOUT</a>
                     <a href="vehicles.html" class="nav-link">VEHICLES</a>
-                    <a href="bookings.html" class="nav-link">BOOKINGS</a>
-                    <a href="index.html" class="nav-link">LOGOUT</a>
+                    <a href="bookings.html" class="nav-link">PROFILE</a>
+                    <button style="border-style: none; padding: 7px; border-radius: 10px;" onclick="logout()"><a class="nav-link">LOGOUT</a></button>
                     
                 </div>
             </div>
         </nav>
     </section>
     <div class="container">
+        
+        <div class="user-profile">
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="profile-details">
+                    <p><strong>Name:</strong> <span id="userName">Loading...</span></p>
+                    <p><strong>Email:</strong> <span id="userEmail">Loading...</span></p>
+                    <p><strong>Contact:</strong> <span id="userContact">Loading...</span></p>
+                </div>
+            </div>
+        </div>
         <h2>Your Bookings</h2>
 
         <!-- Bookings Table -->
@@ -73,6 +86,7 @@
                     <th>Vehicle Name</th>
                     <th>Vehicle Model</th>
                     <th>Registration Number</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
             <tbody id="bookings-table-body">
@@ -83,6 +97,21 @@
     
 
     <script src="./js/bookings.js"></script>
-
+    <script>
+        // Redirect to login page if the user is not logged in
+        if (!localStorage.getItem("isLoggedIn")) {
+            window.location.href = "index.html"; // Redirect to the login page
+        }
+    </script>
+    <script>
+        function logout() {
+        // Clear login state from localStorage
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("user");
+    
+        // Redirect to the login page
+        window.location.href = "index.html";
+    }
+    </script>
 </body>
 </html>
