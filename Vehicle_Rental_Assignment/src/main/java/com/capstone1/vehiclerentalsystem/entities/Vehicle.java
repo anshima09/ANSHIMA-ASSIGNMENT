@@ -8,6 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -50,8 +51,16 @@ public class Vehicle {
     private double price_per_day;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.REMOVE, orphanRemoval = true)
+       @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Booking> bookingsByVehicle = new ArrayList<>();
+
+    public List<Booking> getBookingsByVehicle() {
+        return bookingsByVehicle;
+    }
+
+    public void addBooking(Booking booking) {
+        this.bookingsByVehicle.add(booking);
+    }
 
     public Vehicle() {
     }
@@ -125,9 +134,7 @@ public class Vehicle {
         this.price_per_day = price_per_day;
     }
 
-    public void addBooking(Booking b) {
-        bookingsByVehicle.add(b);
-    }
+    
 
 
     @Override

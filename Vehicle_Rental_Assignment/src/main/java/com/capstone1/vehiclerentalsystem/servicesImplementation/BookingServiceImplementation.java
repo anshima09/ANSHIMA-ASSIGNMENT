@@ -33,57 +33,66 @@ public class BookingServiceImplementation implements BookingService {
     @Autowired
     VehicleService vehicleService;
 
-
-    public ResponseEntity<String> addBooking(String email, String registration_no, String startDate, String endDate) {
-        try {
-            User u1 = userService.getUserByEmail(email);
-            if (u1 == null) {
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with email: " + email);
-}
-            Vehicle v1 = vehicleService.getByRegistrationNumber(registration_no);
-            
-            if (v1 == null) {
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vehicle not found with registration number: " + registration_no);
-}
-            LocalDate start = LocalDate.parse(startDate);
-            LocalDate end = LocalDate.parse(endDate);
-
-            System.out.println("Date is correct huraahhhhhhhhhhhhhh");
-
-            if (end.isBefore(start)) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("End date cannot be earlier than start date.");
-            }
-
-            // calculating total price;
-            long days = ChronoUnit.DAYS.between(start, end) + 1; // including the initial too
-            System.out.println("Total Days are : " + days);
-            double totalPrice = v1.getPrice_per_day() * days;
-
-            
-            Booking booking = new Booking();
-            booking.setUser(u1);
-            booking.setVehicle(v1);
-            booking.setbTime(LocalDateTime.now());
-            booking.setStartDate(start);
-            booking.setEndDate(end);
-            booking.setPrice(totalPrice);
-            booking.setBookingStatus(BookingStatus.CONFIRMED);
-
-            Booking bookSaved = bookingRepository.save(booking);
-            u1.addBooking(bookSaved);
-            v1.addBooking(bookSaved);
-            System.out.println(bookSaved);
-
-            return ResponseEntity.ok("Successfully Booked");
-            
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong while booking");
+public ResponseEntity<Booking> addBooking(String email, String registration_no, String startDate, String endDate) {
+    try {
+        System.out.println("Fetching user by email: " + email);
+        User u1 = userService.getUserByEmail(email);
+        if (u1 == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Return null for Booking
         }
 
-    }
+        System.out.println("Fetching vehicle by registration number: " + registration_no);
+        Vehicle v1 = vehicleService.getByRegistrationNumber(registration_no);
+        if (v1 == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Return null for Booking
+        }
 
+        System.out.println("Parsing start and end dates");
+        LocalDate start = LocalDate.parse(startDate);
+        LocalDate end = LocalDate.parse(endDate);
+
+         LocalDate today = LocalDate.now();
+        if (start.isBefore(today)) {
+            System.out.println("Start date cannot be before the current date.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null); // Return null for Booking
+        }
+
+        if (end.isBefore(start)) {
+            System.out.println("End date cannot be earlier than start date.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null); // Return null for Booking
+        }
+
+        System.out.println("Calculating total price");
+        long days = ChronoUnit.DAYS.between(start, end) + 1; // including the initial day
+        System.out.println("Total Days: " + days);
+        double totalPrice = v1.getPrice_per_day() * days;
+
+        System.out.println("Creating booking object");
+        Booking booking = new Booking();
+        booking.setUser(u1);
+        booking.setVehicle(v1);
+        booking.setbTime(LocalDateTime.now());
+        booking.setStartDate(start);
+        booking.setEndDate(end);
+        booking.setPrice(totalPrice);
+        booking.setBookingStatus(BookingStatus.CONFIRMED);
+
+        System.out.println("Initializing collections");
+        u1.getBookings().size(); // Force initialization of the bookings collection
+        v1.getBookingsByVehicle().size(); // Force initialization of the bookingsByVehicle collection
+
+        System.out.println("Saving booking to database");
+        Booking bookSaved = bookingRepository.save(booking);
+        u1.addBooking(bookSaved);
+        v1.addBooking(bookSaved);
+        System.out.println("Booking saved successfully: " + bookSaved);
+
+        return ResponseEntity.ok(bookSaved);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // Return null for Booking
+    }
+}
     public ResponseEntity<List<Booking>> getBookings(String email) {
 
         try {
@@ -136,5 +145,7 @@ public ResponseEntity<String> deleteBooking(String email, Integer bookingId) {
 public Booking getBookingById(Integer bookingId) {
     return bookingRepository.findById(bookingId).orElse(null);
 }
+
+
 
 }

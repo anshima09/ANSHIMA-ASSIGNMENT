@@ -10,7 +10,7 @@ import com.capstone1.vehiclerentalsystem.entities.Booking;
 @Service
 public interface BookingService {
 
-    public ResponseEntity<String> addBooking(String email, String registration_no, String startDate, String endDate);
+    public ResponseEntity<Booking> addBooking(String email, String registration_no, String startDate, String endDate);
 
     public ResponseEntity<List<Booking>> getBookings(String email);
 

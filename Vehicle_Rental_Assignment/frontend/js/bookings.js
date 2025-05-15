@@ -23,6 +23,8 @@ async function fetchBookings() {
         return;
     }
 
+   
+
     const API_URL = `http://localhost:8080/booking/getByEmail?email=${encodeURIComponent(user.email)}`;
     console.log("Fetching data from:", API_URL);
 
@@ -48,27 +50,43 @@ async function fetchBookings() {
 }
 
 // Function to render bookings in the table
+// Function to render bookings in the table
+// Function to render bookings in the table
 function renderBookings(bookings) {
     const bookingsTableBody = document.getElementById("bookings-table-body");
 
-    bookingsTableBody.innerHTML = bookings.map(booking => `
-        <tr>
-            <td>${booking.bId}</td>
-            <td>${new Date(booking.bTime).toLocaleString()}</td>
-            <td class="${booking.bookingStatus === "CONFIRMED" ? "status-confirmed" : "status-cancelled"}">
-                ${booking.bookingStatus}
-            </td>
-            <td>${booking.startDate}</td>
-            <td>${booking.endDate}</td>
-            <td>Rs.${booking.price.toFixed(2)}</td>
-            <td>${booking.vehicle.name}</td>
-            <td>${booking.vehicle.model}</td>
-            <td>${booking.vehicle.registration_number}</td>
-            <td>
-                <button class="delete-btn" onclick="deleteBooking(${booking.bId})">Remove</button>
-            </td>
-        </tr>
-    `).join("");
+    bookingsTableBody.innerHTML = bookings.map(booking => {
+        const startDate = new Date(booking.startDate);
+        const endDate = new Date(booking.endDate);
+        const today = new Date();
+
+        // Check if the booking is expired
+        const isExpired = endDate < today;
+        const bookingStatus = isExpired ? "EXPIRED" : booking.bookingStatus;
+
+        // Check if the delete button should be shown (only if within 7 days of the start date)
+        const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)); // Days difference
+        const deleteButton = daysSinceStart <= 7 && !isExpired
+            ? `<button class="delete-btn" onclick="deleteBooking(${booking.bId})">Remove</button>`
+            : `<span class="disabled-btn">Not Allowed</span>`;
+
+        return `
+            <tr>
+                <td>${booking.bId}</td>
+                <td>${new Date(booking.bTime).toLocaleString()}</td>
+                <td class="${bookingStatus === "CONFIRMED" ? "status-confirmed" : bookingStatus === "EXPIRED" ? "status-expired" : "status-cancelled"}">
+                    ${bookingStatus}
+                </td>
+                <td>${booking.startDate}</td>
+                <td>${booking.endDate}</td>
+                <td>Rs.${booking.price.toFixed(2)}</td>
+                <td>${booking.vehicle.name}</td>
+                <td>${booking.vehicle.model}</td>
+                <td>${booking.vehicle.registration_number}</td>
+                <td>${deleteButton}</td>
+            </tr>
+        `;
+    }).join("");
 }
 
 // Delete a booking

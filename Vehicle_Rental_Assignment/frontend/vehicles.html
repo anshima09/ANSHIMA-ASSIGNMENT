@@ -28,14 +28,7 @@
             <span class="separator">|</span>
             <a href="mailto:anshima54@gmail.com" class="email-link"><i class="fa fa-envelope"></i>ridon54@gmail.com</a>
         </div>
-        <div class="top-bar-social">
-            <span>Follow us: </span>
-            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-        </div>
+        
     </section>
     
     <!-- Navbar Start -->
@@ -88,7 +81,25 @@
             <button onclick="submitBooking()">Confirm Booking</button>
         </div>
     </div>
-    
+    <!-- Payment Modal -->
+<div id="paymentModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePaymentForm()">&times;</span>
+        <h2>Payment Details</h2>
+        <form id="paymentForm">
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" placeholder="Enter your card number" required>
+
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="text" id="expiry-date" placeholder="MM/YY" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" placeholder="Enter CVV" required>
+
+            <button type="button" onclick="submitPayment()">Pay Now</button>
+        </form>
+    </div>
+</div>
     <script>
         // Redirect to login page if the user is not logged in
         if (!localStorage.getItem("isLoggedIn")) {

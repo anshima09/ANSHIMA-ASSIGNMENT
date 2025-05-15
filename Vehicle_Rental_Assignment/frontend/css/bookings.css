@@ -43,6 +43,11 @@ h2 {
     font-weight: bold;
 }
 
+.status-expired {
+    color: red;
+    font-weight: bold;
+}
+
 .status-cancelled {
     color: #ff4757;
     font-weight: bold;

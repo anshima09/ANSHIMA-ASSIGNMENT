@@ -73,6 +73,8 @@ nav {
     font-size: 16px;
     font-weight: 500;
     position: relative;
+        font-family: 'Poppins', sans-serif;
+
 }
 
 .navbar-menu a:hover {

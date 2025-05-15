@@ -11,6 +11,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,8 +48,16 @@ public class User {
 
     @JsonIgnore
     @JsonBackReference(value = "booking-user")
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Booking> bookings = new ArrayList<>();
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void addBooking(Booking booking) {
+        this.bookings.add(booking);
+    }
 
     public User() {
         // this.user_id = idCounter++;
@@ -115,13 +124,7 @@ public class User {
         this.role = role;
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void addBooking(Booking b) {
-        bookings.add(b);
-    }
+   
 
    
 

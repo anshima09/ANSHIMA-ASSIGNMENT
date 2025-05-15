@@ -1,6 +1,7 @@
 const API_URL = "http://localhost:8080/vehicle/getAllVehicles";
 let selectedVehicleRegNo = "";
 let allVehicles = []; // Store all vehicles for filtering
+let currentBookingId = null;
 
 // Fetch Vehicles
 async function fetchVehicles() {
@@ -76,6 +77,10 @@ function closeBookingForm() {
 }
 
 // Submit Booking
+// Global variable to store the booking ID for payment
+
+
+// Submit Booking
 async function submitBooking() {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user || !user.email) {
@@ -91,22 +96,100 @@ async function submitBooking() {
         return;
     }
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set time to midnight for comparison
+    const selectedStartDate = new Date(startDate);
+
+    if (selectedStartDate < today) {
+        alert("Please select a valid date.");
+        return;
+    }
+
     const API_URL = `http://localhost:8080/booking/add?email=${encodeURIComponent(user.email)}&registration_no=${encodeURIComponent(selectedVehicleRegNo)}&startDate=${encodeURIComponent(startDate)}&endDate=${encodeURIComponent(endDate)}`;
     
     try {
+        console.log("Calling Add Booking API:", API_URL);
+
         const response = await fetch(API_URL, { method: "POST" });
+
         if (response.ok) {
-            alert("✅ Successfully Booked!");
+            const bookingResponse = await response.json();
+            console.log("Booking successful:", bookingResponse);
+
+            // Show booking success alert
             closeBookingForm();
-            fetchVehicles(); // Reload vehicles
+            // Store the booking ID for payment
+            currentBookingId = bookingResponse.bId;
+
+            // Open the payment form modal
+            openPaymentForm();
         } else {
+            const errorText = await response.text();
+            console.error("Booking API Error:", errorText);
             alert("❌ Booking Failed! Try Again.");
         }
     } catch (error) {
         console.error("Error booking vehicle:", error);
-        alert("❌ Something went wrong!");
+        alert(`❌ Something went wrong! Error: ${error.message}`);
     }
 }
 
+// Open Payment Form
+function openPaymentForm() {
+    document.getElementById("paymentModal").style.display = "block";
+}
+
+// Close Payment Form
+function closePaymentForm() {
+    document.getElementById("paymentModal").style.display = "none";
+}
+
+// Submit Payment
+async function submitPayment() {
+    const cardNumber = document.getElementById("card-number").value;
+    const expiryDate = document.getElementById("expiry-date").value;
+    const cvv = document.getElementById("cvv").value;
+
+    if (!cardNumber || !expiryDate || !cvv) {
+        alert("Please fill out all payment details!");
+        return;
+    }
+
+    // Call the payment API
+    await initiatePayment(currentBookingId);
+
+    // Close the payment form modal
+    closePaymentForm();
+}
+
+// Initiate Payment
+async function initiatePayment(bookingId) {
+    const API_URL = `http://localhost:8080/booking/payment/${bookingId}`;
+
+    try {
+        console.log("Calling Payment API:", API_URL);
+
+        const response = await fetch(API_URL, { method: "POST" });
+
+        if (response.ok) {
+            const paymentResponse = await response.json();
+            console.log("Payment successful:", paymentResponse);
+
+            if (paymentResponse.status === "SUCCESS") {
+                alert(paymentResponse.message);
+            } else {
+                alert(paymentResponse.message);
+            }
+            
+        } else {
+            const errorResponse = await response.json();
+            console.error("Payment API Error:", errorResponse);
+            alert(errorResponse.message || "❌ Payment Failed! Try Again.");
+        }
+    } catch (error) {
+        console.error("Error initiating payment:", error);
+        alert(`❌ Payment failed! Error: ${error.message}`);
+    }
+}
 // Load Vehicles
 document.addEventListener("DOMContentLoaded", fetchVehicles);

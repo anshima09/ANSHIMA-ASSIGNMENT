@@ -32,6 +32,8 @@ public class Booking {
     private LocalDate endDate;
 
     private double price;
+    
+    
 
     @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus;
@@ -46,6 +48,15 @@ public class Booking {
 
     @Version
     private int version;
+    private String paymentStatus = "PENDING"; // Default status
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
 
     public Booking() {
     }
