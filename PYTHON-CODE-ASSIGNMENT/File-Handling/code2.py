@@ -5,5 +5,4 @@ def count_words_in_file(filename):
     print("Content of the file: ",text)
     return len(words)
 
-
 print("Word count: ", count_words_in_file("anshima.txt"))

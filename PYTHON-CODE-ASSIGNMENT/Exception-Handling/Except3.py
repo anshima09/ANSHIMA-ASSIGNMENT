@@ -8,5 +8,4 @@ def nested_try():
     except ValueError:
         print("Outer block: Value error")
 
-
 nested_try()

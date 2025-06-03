@@ -7,6 +7,5 @@ def longest_palindrome(s):
                 longest = substr
     return longest
 
-
 str = input("Enter a string to find the longest palindrome: ")
 print("Longest Palindrome: ",longest_palindrome(str))  

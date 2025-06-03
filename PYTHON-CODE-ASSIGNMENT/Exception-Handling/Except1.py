@@ -6,6 +6,5 @@ def divide(a, b):
     else:
         print("Result:", result)
 
-
 divide(10, 0)
 divide(10, 2)

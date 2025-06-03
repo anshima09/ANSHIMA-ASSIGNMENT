@@ -13,6 +13,4 @@ def append_input_to_file(filename):
         for line in file:
             print(line.strip())
 
-
-
 append_input_to_file("anshima.txt")
