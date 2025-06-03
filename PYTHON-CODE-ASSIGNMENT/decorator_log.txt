@@ -1,0 +1,2 @@
+Error in risky_division: division by zero
+Error in risky_division: division by zero

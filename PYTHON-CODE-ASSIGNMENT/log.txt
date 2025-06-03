@@ -1,0 +1,2 @@
+Exception occurred: division by zero
+Exception occurred: division by zero
