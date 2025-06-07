@@ -1,5 +1,7 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field, constr
 from enum import Enum
+from typing import Optional
+
 
 class RoleEnum(str, Enum):
     admin = "admin"
@@ -24,9 +26,17 @@ class UserOut(BaseModel):
     class Config:
         from_attributes = True
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    id: Optional[str]=None
+
 class ForgotPassword(BaseModel):
     email: EmailStr
 
 class ResetPassword(BaseModel):
     token: str
-    new_password: str
+    new_password: str = Field(..., min_length=6)
+
