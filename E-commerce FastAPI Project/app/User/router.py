@@ -44,14 +44,7 @@ def signup(user: UserSignup,db: Session = Depends(get_db)):
     return new_user
 
 
-
-@router.get("/getUsersById/{id}",response_model=UserOut)
-def get_user(id: int, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.id == id).first()
-    if not user:
-        raise HTTPException(status_code=404, detail=f"User with id {id} not found!")
-    return user
-
+#admin sepcific
 @router.get("/getAllUsers", response_model=List[UserOut])
 def get_all_users(db:Session = Depends(get_db)):
     users = db.query(User).all()
