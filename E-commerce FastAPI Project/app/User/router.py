@@ -1,19 +1,39 @@
-from fastapi import FastAPI, HTTPException, Depends, status, APIRouter
-from app.schemas.usersS import UserSignup, UserOut
+from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm import Session
 from app.db.database import get_db
-from app.models.users import User
-from app.utils.utils import hash_password
+from app.User.models import User
+from fastapi.security.oauth2 import OAuth2PasswordRequestForm
+from app.User.schemas import UserSignup, UserOut,ForgotPassword, ResetPassword
+from app.User.models import User,PasswordResetToken
+from sqlalchemy.orm import Session
 from typing import List
-from app.models.users import PasswordResetToken
-from app.schemas.usersS import ForgotPassword, ResetPassword
-from app.utils.utils import hash_password, generate_reset_token
+from app.utils.utils import hash_password, generate_reset_token, verify_password
 from datetime import datetime
+from app.utils import oauth2
+
 
 router = APIRouter()
 
+@router.post("/signin")
+def login(users_credentials: OAuth2PasswordRequestForm=Depends(), db:Session = Depends(get_db)):
+    user= db.query(User).filter(User.email == users_credentials.username).first()
+    
+    if not user or not verify_password(users_credentials.password, user.password):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials")
+    
+    token_data = {"user_id": user.id, "role": user.role}
+    return {
+        "access_token": oauth2.create_access_token(token_data),
+        "refresh_token": oauth2.create_refresh_token(token_data),
+        "token_type": "bearer",
+        "user": user.email
+    }
+
+
 @router.post("/signup", status_code=status.HTTP_201_CREATED,response_model=UserOut)
 def signup(user: UserSignup,db: Session = Depends(get_db)):
+    if db.query(User).filter(User.email == user.email).first():
+        raise HTTPException(status_code=400, detail="Email already registered")
     user_data = user.dict()
     user_data["password"] = hash_password(user_data["password"])
     print(user_data)
@@ -22,6 +42,7 @@ def signup(user: UserSignup,db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
     return new_user
+
 
 
 @router.get("/getUsersById/{id}",response_model=UserOut)
@@ -40,7 +61,7 @@ def get_all_users(db:Session = Depends(get_db)):
 
 
 
-@router.post("/forgot-password")
+@router.post("/forgot-password",status_code=status.HTTP_201_CREATED)
 def secure_forgot_password(request: ForgotPassword, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == request.email).first()
     if not user:

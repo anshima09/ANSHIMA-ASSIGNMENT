@@ -13,3 +13,6 @@ def generate_reset_token(expiry_minutes=15):
     token = str(uuid.uuid4())
     expires_at = datetime.utcnow() + timedelta(minutes=expiry_minutes)
     return token, expires_at
+
+def send_reset_email(email: str, token: str):
+    print(f"Send email to {email} with token: {token}")
