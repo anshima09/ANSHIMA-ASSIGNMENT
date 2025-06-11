@@ -7,6 +7,7 @@ from app.utils.oauth2 import decode_token
 from fastapi.security import OAuth2PasswordBearer
 from typing import List
 from sqlalchemy import or_
+from app.db.config import logger
 
 
 router = APIRouter()
@@ -28,6 +29,7 @@ def create_product(product: ProductCreate, db: Session = Depends(get_db), user: 
     db.add(new_product)
     db.commit()
     db.refresh(new_product)
+    logger.info(f"Product created: {new_product.name} by admin {user.get('user_id')}")
     return new_product
 
 
@@ -41,7 +43,9 @@ def get_all_products(
 ):
     products = db.query(Product).offset(skip).limit(limit).all()
     if not products:
+        logger.warning("No products found in the database (admin endpoint).")
         raise HTTPException(status_code=404, detail="No products found.")
+    logger.info(f"Admin {user.get('user_id')} fetched all products. Total: {len(products)}")
     return products
 
 
@@ -50,11 +54,13 @@ def get_all_products(
 def get_product_by_id(
     product_id: int,
     db: Session = Depends(get_db),
-    user: dict = Depends(get_current_user_role)  # <-- Only admins can access
+    user: dict = Depends(get_current_user_role)
 ):
     product = db.query(Product).filter(Product.id == product_id).first()
     if not product:
+        logger.warning(f"Admin {user.get('user_id')} tried to fetch non-existent product ID {product_id}")
         raise HTTPException(status_code=404, detail="Product not found.")
+    logger.info(f"Admin {user.get('user_id')} fetched product ID {product_id}")
     return product
 
 #admin can update product details 
@@ -62,6 +68,7 @@ def get_product_by_id(
 def update_product(product_id: int, product: ProductCreate, db: Session = Depends(get_db), user: dict = Depends(get_current_user_role)):
     existing_product = db.query(Product).filter(Product.id == product_id).first()
     if not existing_product:
+        logger.warning(f"Admin {user.get('user_id')} tried to update non-existent product ID {product_id}")
         raise HTTPException(status_code=404, detail="Product not found")
     existing_product.name = product.name
     existing_product.description = product.description
@@ -71,6 +78,7 @@ def update_product(product_id: int, product: ProductCreate, db: Session = Depend
     existing_product.image_url = product.image_url
     db.commit()
     db.refresh(existing_product)
+    logger.info(f"Product ID {product_id} updated by admin {user.get('user_id')}")
     return existing_product
 
 #admin can delete product
@@ -78,9 +86,11 @@ def update_product(product_id: int, product: ProductCreate, db: Session = Depend
 def delete_product(product_id: int, db: Session = Depends(get_db), user: dict = Depends(get_current_user_role)):
     product = db.query(Product).filter(Product.id == product_id).first()
     if not product:
+        logger.warning(f"Admin {user.get('user_id')} tried to delete non-existent product ID {product_id}")
         raise HTTPException(status_code=404, detail="Product not found")
     db.delete(product)
     db.commit()
+    logger.info(f"Product ID {product_id} deleted by admin {user.get('user_id')}")
     return {"detail": "Product deleted successfully"}
 
 
@@ -97,25 +107,20 @@ def list_products(
     db: Session = Depends(get_db),
 ):
     query = db.query(Product)
-
     if category:
         query = query.filter(Product.category == category)
     if min_price is not None:
         query = query.filter(Product.price >= min_price)
     if max_price is not None:
         query = query.filter(Product.price <= max_price)
-
-    # Sorting
     sort_column = getattr(Product, sort_by)
     query = query.order_by(sort_column)
-
-    # Pagination
     total = query.count()
     products = query.offset((page - 1) * page_size).limit(page_size).all()
-
     if not products:
+        logger.warning("No products found for user filter/search request.")
         raise HTTPException(status_code=404, detail="No products found.")
-
+    logger.info(f"User fetched products with filters. Returned: {len(products)}")
     return products
 
 
@@ -132,7 +137,9 @@ def search_products(
         )
     ).all()
     if not products:
+        logger.warning(f"No products found matching search keyword: {keyword}")
         raise HTTPException(status_code=404, detail="No products found matching the search keyword.")
+    logger.info(f"User searched for products with keyword '{keyword}'. Found: {len(products)}")
     return products
 
 #user can get all products without any filters
@@ -144,10 +151,12 @@ def get_all_products(
 ):
     products = db.query(Product).offset(skip).limit(limit).all()
     if not products:
+        logger.warning("No products found (user endpoint).")
         raise HTTPException(status_code=404, detail="No products found.")
+    logger.info(f"User fetched all products. Total: {len(products)}")
     return products
 
-#users can get product details by id
+# users can get product details by id
 @router.get("/getProducts/{id}", response_model=ProductOut)
 def get_product_detail(
     id: int,
@@ -155,7 +164,9 @@ def get_product_detail(
 ):
     product = db.query(Product).filter(Product.id == id).first()
     if not product:
+        logger.warning(f"User tried to fetch non-existent product ID {id}")
         raise HTTPException(status_code=404, detail="Product not found.")
+    logger.info(f"User fetched product ID {id}")
     return product
 
 
