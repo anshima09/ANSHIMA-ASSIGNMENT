@@ -1,19 +1,25 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.Cart.models import CartItem
-from app.Cart.schemas import CartItemCreate,CartItemOut,CartItemUpdate,CartItemBase
+from app.Cart.schemas import CartItemCreate, CartItemOut, CartItemUpdate, CartItemBase
 from app.db.database import get_db
 from sqlalchemy.orm import Session
 from app.User.models import User
 from app.Product.models import Product
-from typing import List
+from typing import List, Dict, Any
 from app.utils.oauth2 import decode_token
 from app.db.config import logger
-
 
 router = APIRouter()
 
 @router.post("/addToCart")
-def add_cart_item(item: CartItemCreate, db: Session = Depends(get_db), user: User = Depends(decode_token)):
+async def add_cart_item(
+    item: CartItemCreate,
+    db: Session = Depends(get_db),
+    user: User = Depends(decode_token)
+) -> Dict[str, Any]:
+    """
+    Add an item to the user's cart.
+    """
     db_item = CartItem(**item.dict(), user_id=user.id)
     if not db_item.product_id:
         logger.warning(f"User {user.id} tried to add a cart item with missing product_id.")
@@ -25,7 +31,13 @@ def add_cart_item(item: CartItemCreate, db: Session = Depends(get_db), user: Use
     return {"message": "Item added to cart", "item": db_item}
 
 @router.get("/viewCart", response_model=List[CartItemOut])
-def view_cart(db: Session = Depends(get_db), user: User = Depends(decode_token)):
+async def view_cart(
+    db: Session = Depends(get_db),
+    user: User = Depends(decode_token)
+) -> List[CartItemOut]:
+    """
+    View all items in the user's cart.
+    """
     cart_items = db.query(CartItem).filter(CartItem.user_id == user.id).all()
     if not cart_items:
         logger.warning(f"User {user.id} viewed cart but it is empty.")
@@ -34,7 +46,15 @@ def view_cart(db: Session = Depends(get_db), user: User = Depends(decode_token))
     return cart_items
 
 @router.put("/update-cart/{item_id}", response_model=CartItemOut)
-def update_cart_item(item_id: int, item: CartItemUpdate, db: Session = Depends(get_db), user: User = Depends(decode_token)):
+async def update_cart_item(
+    item_id: int,
+    item: CartItemUpdate,
+    db: Session = Depends(get_db),
+    user: User = Depends(decode_token)
+) -> CartItemOut:
+    """
+    Update the quantity or details of a specific cart item.
+    """
     db_item = db.query(CartItem).filter(CartItem.id == item_id, CartItem.user_id == user.id).first()
     if not db_item:
         logger.warning(f"User {user.id} tried to update non-existent cart item {item_id}.")
@@ -47,7 +67,14 @@ def update_cart_item(item_id: int, item: CartItemUpdate, db: Session = Depends(g
     return db_item
 
 @router.delete("/delete-cart/{item_id}", response_model=str)
-def delete_cart_item(item_id: int, db: Session = Depends(get_db), user: User = Depends(decode_token)):
+async def delete_cart_item(
+    item_id: int,
+    db: Session = Depends(get_db),
+    user: User = Depends(decode_token)
+) -> str:
+    """
+    Delete a specific item from the user's cart.
+    """
     db_item = db.query(CartItem).filter(CartItem.id == item_id, CartItem.user_id == user.id).first()
     if not db_item:
         logger.warning(f"User {user.id} tried to delete non-existent cart item {item_id}.")

@@ -1,7 +1,3 @@
-from fastapi import APIRouter
-
-router = APIRouter()
-
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.db.database import get_db
@@ -13,9 +9,15 @@ from typing import List
 
 router = APIRouter()
 
-
 @router.get("/view-orders", response_model=List[OrderMetaOut])
-def get_order_history(db: Session = Depends(get_db), user = Depends(decode_token)):
+async def get_order_history(
+    db: Session = Depends(get_db),
+    user = Depends(decode_token)
+) -> List[OrderMetaOut]:
+    """
+    Retrieve the order history for the currently authenticated user.
+    Returns a list of order metadata.
+    """
     orders = db.query(Order).filter(Order.user_id == user.id).order_by(Order.created_at.desc()).all()
     if not orders:
         logger.warning(f"User {user.id} has no orders in history.")
@@ -24,7 +26,15 @@ def get_order_history(db: Session = Depends(get_db), user = Depends(decode_token
     return orders
 
 @router.get("/view-orders-by-id/{order_id}", response_model=OrderOut)
-def get_order_detail(order_id: int, db: Session = Depends(get_db), user = Depends(decode_token)):
+async def get_order_detail(
+    order_id: int,
+    db: Session = Depends(get_db),
+    user = Depends(decode_token)
+) -> OrderOut:
+    """
+    Retrieve the details of a specific order by order ID for the authenticated user.
+    Returns the order details including line items.
+    """
     order = db.query(Order).filter(Order.id == order_id, Order.user_id == user.id).first()
     if not order:
         logger.warning(f"User {user.id} tried to fetch non-existent or unauthorized order ID {order_id}")

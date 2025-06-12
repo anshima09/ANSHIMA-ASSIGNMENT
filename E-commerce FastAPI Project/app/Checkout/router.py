@@ -12,7 +12,15 @@ from app.db.config import logger
 router = APIRouter()
 
 @router.post("/checkout", response_model=CheckoutResponse)
-def checkout(db: Session = Depends(get_db), user = Depends(decode_token)):
+async def checkout(
+    db: Session = Depends(get_db),
+    user = Depends(decode_token)
+) -> CheckoutResponse:
+    """
+    Mocks a payment, creates an order with order details, and clears the user's cart.
+    Only accessible by authenticated users.
+    """
+    # Fetch all cart items for the user
     cart_items = db.query(CartItem).filter(CartItem.user_id == user.id).all()
     if not cart_items:
         logger.warning(f"User {user.id} attempted checkout with empty cart.")
@@ -21,6 +29,7 @@ def checkout(db: Session = Depends(get_db), user = Depends(decode_token)):
     total_amount = 0
     order_items = []
 
+    # Prepare order items and calculate total amount
     for item in cart_items:
         product = db.query(Product).filter(Product.id == item.product_id).first()
         if not product:
@@ -34,6 +43,7 @@ def checkout(db: Session = Depends(get_db), user = Depends(decode_token)):
             "price_at_purchase": product.price
         })
 
+    # Create the order
     order = Order(
         user_id=user.id,
         total_amount=total_amount,
@@ -45,16 +55,19 @@ def checkout(db: Session = Depends(get_db), user = Depends(decode_token)):
     db.refresh(order)
     logger.info(f"Order {order.id} created for user {user.id} with total {total_amount}.")
 
+    # Add order items to the order
     for oi in order_items:
         db.add(OrderItem(order_id=order.id, **oi))
     db.commit()
     logger.info(f"Order items added for order {order.id}.")
 
+    # Clear the user's cart
     for item in cart_items:
         db.delete(item)
     db.commit()
     logger.info(f"Cart cleared for user {user.id} after checkout.")
 
+    # Return checkout response
     return CheckoutResponse(
         message="Payment successful (dummy)! Order placed.",
         order_id=order.id,

@@ -1,10 +1,11 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,Field
 from typing import Optional
+
 
 class ProductBase(BaseModel):
     name: str
     description: Optional[str] = None
-    price: float
+    price: float = Field(..., gt=0, description="Price must be greater than 0")    
     stock: int
     category: Optional[str] = None
     image_url: Optional[str] = None

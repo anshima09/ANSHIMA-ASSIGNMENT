@@ -9,7 +9,7 @@ class OrderItemOut(BaseModel):
     price_at_purchase: float
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class OrderOut(BaseModel):
     id: int
@@ -28,4 +28,4 @@ class OrderMetaOut(BaseModel):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True

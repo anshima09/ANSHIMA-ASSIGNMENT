@@ -17,4 +17,3 @@ def get_db():
     finally:
         db.close()
 
-#tbyr lyjp hiej vqxe
