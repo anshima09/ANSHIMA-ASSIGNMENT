@@ -97,13 +97,13 @@ def secure_forgot_password(
     db.commit()
 
     # Send token via email
-    sender = "anshima0906s@gmail.com"
-    password = "tbyrlyjphiejvqxe"  
+    #sender = "anshima0906s@gmail.com"
+    #password = "tbyrlyjphiejvqxe"  
     receiver = user.email
     receiver_name = user.name
     sending_email_with_token(
-        sender=sender,
-        password=password,
+        #sender=sender,
+        #password=password,
         receiver=receiver,
         reset_token=token,
         receiver_name=receiver_name

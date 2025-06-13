@@ -2,32 +2,18 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from fastapi import HTTPException, status
-import os
 from dotenv import load_dotenv
-
-# Load environment variables from .env file
+import os
 load_dotenv()
 def sending_email_with_token(
-    sender: str,
-    password: str,
+   # sender: str,
+   # password: str,
     receiver: str,
     reset_token: str,
     receiver_name: str
-) -> None:
-    """
-    Asynchronously sends a password reset token email to the specified receiver.
-
-    Args:
-        sender (str): The sender's email address.
-        password (str): The sender's email password.
-        receiver (str): The receiver's email address.
-        reset_token (str): The password reset token to be sent.
-        receiver_name (str): The name of the receiver.
-
-    Raises:
-        HTTPException: If sending the email fails.
-    """
-    
+):
+    sender = os.getenv("EMAIL_SENDER")
+    password = os.getenv("EMAIL_PASSWORD")
     subject_line = "Password Reset Token for E-commerce login"
     
     body = f"""
