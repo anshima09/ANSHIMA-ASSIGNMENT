@@ -143,11 +143,12 @@ You can use the provided `postman_collection.json` to test endpoints via Postman
 ### Main Endpoints
 
 - **Authentication**: `/auth/signup`, `/auth/signin`, `/auth/forgot-password`, `/auth/reset-password`
-- **Products (Admin)**: `/admin/products`
-- **Products (Public)**: `/products`, `/products/search`, `/products/{id}`
-- **Cart**: `/cart`
+- **Products (Admin)**: `/products/create-product`, `/products/update-product`, `/products/delete-product`,
+                         `/products/getAllProducts/`, `/products/getProductsById`
+- **Products (Public)**: `/products/getAllProductsForUser`, `/products/search`, `/products/getProducttsBySorting`
+- **Cart**: `/cart/add-cart`, `/cart/view-cart`, `/cart/delete-cart`, `/cart/update-cart`
 - **Checkout**: `/checkout`
-- **Orders**: `/orders`, `/orders/{order_id}`
+- **Orders**: `/orders/view-orders`, `/orders/viewOrdersById}`
 
 ---
 
