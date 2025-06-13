@@ -14,10 +14,11 @@ from app.db.config import logger
 from app.utils.email import sending_email_with_token
 from typing import Dict, Any
 
+
 router = APIRouter()
 
 @router.post("/signin")
-async def login(
+def login(
     users_credentials: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(get_db)
 ) -> Dict[str, Any]:
@@ -39,7 +40,7 @@ async def login(
 
 
 @router.post("/signup", status_code=status.HTTP_201_CREATED, response_model=UserOut)
-async def signup(
+def signup(
     user: UserSignup,
     db: Session = Depends(get_db)
 ) -> UserOut:
@@ -61,7 +62,7 @@ async def signup(
 
 #admin sepcific
 @router.get("/getAllUsers", response_model=List[UserOut])
-async def get_all_users(
+def get_all_users(
     db: Session = Depends(get_db)
 ) -> List[UserOut]:
     """
@@ -77,7 +78,7 @@ async def get_all_users(
 
 
 @router.post("/forgot-password", status_code=status.HTTP_201_CREATED)
-async def secure_forgot_password(
+def secure_forgot_password(
     request: ForgotPassword,
     db: Session = Depends(get_db)
 ) -> Dict[str, str]:
@@ -97,7 +98,7 @@ async def secure_forgot_password(
 
     # Send token via email
     sender = "anshima0906s@gmail.com"
-    password = "tbyrlyjphiejvqxe"  # Move to environment variable in production!
+    password = "tbyrlyjphiejvqxe"  
     receiver = user.email
     receiver_name = user.name
     sending_email_with_token(
@@ -113,7 +114,7 @@ async def secure_forgot_password(
 
 
 @router.post("/reset-password")
-async def secure_reset_password(
+def secure_reset_password(
     request: ResetPassword,
     db: Session = Depends(get_db)
 ) -> Dict[str, str]:

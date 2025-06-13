@@ -10,7 +10,7 @@ from typing import List
 router = APIRouter()
 
 @router.get("/view-orders", response_model=List[OrderMetaOut])
-async def get_order_history(
+def get_order_history(
     db: Session = Depends(get_db),
     user = Depends(decode_token)
 ) -> List[OrderMetaOut]:
@@ -26,7 +26,7 @@ async def get_order_history(
     return orders
 
 @router.get("/view-orders-by-id/{order_id}", response_model=OrderOut)
-async def get_order_detail(
+def get_order_detail(
     order_id: int,
     db: Session = Depends(get_db),
     user = Depends(decode_token)

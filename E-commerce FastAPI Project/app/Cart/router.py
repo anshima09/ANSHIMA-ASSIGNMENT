@@ -12,7 +12,7 @@ from app.db.config import logger
 router = APIRouter()
 
 @router.post("/addToCart")
-async def add_cart_item(
+def add_cart_item(
     item: CartItemCreate,
     db: Session = Depends(get_db),
     user: User = Depends(decode_token)
@@ -31,7 +31,7 @@ async def add_cart_item(
     return {"message": "Item added to cart", "item": db_item}
 
 @router.get("/viewCart", response_model=List[CartItemOut])
-async def view_cart(
+def view_cart(
     db: Session = Depends(get_db),
     user: User = Depends(decode_token)
 ) -> List[CartItemOut]:
@@ -46,7 +46,7 @@ async def view_cart(
     return cart_items
 
 @router.put("/update-cart/{item_id}", response_model=CartItemOut)
-async def update_cart_item(
+def update_cart_item(
     item_id: int,
     item: CartItemUpdate,
     db: Session = Depends(get_db),
@@ -67,7 +67,7 @@ async def update_cart_item(
     return db_item
 
 @router.delete("/delete-cart/{item_id}", response_model=str)
-async def delete_cart_item(
+def delete_cart_item(
     item_id: int,
     db: Session = Depends(get_db),
     user: User = Depends(decode_token)

@@ -2,8 +2,12 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from fastapi import HTTPException, status
+import os
+from dotenv import load_dotenv
 
-async def sending_email_with_token(
+# Load environment variables from .env file
+load_dotenv()
+def sending_email_with_token(
     sender: str,
     password: str,
     receiver: str,
@@ -23,6 +27,7 @@ async def sending_email_with_token(
     Raises:
         HTTPException: If sending the email fails.
     """
+    
     subject_line = "Password Reset Token for E-commerce login"
     
     body = f"""

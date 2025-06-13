@@ -10,6 +10,13 @@ from app.Product.router import router as ProductR
 from app.Cart.router import router as CartR
 from app.Order.router import router as OrderR
 from app.Checkout.router import router as CheckoutR
+from dotenv import load_dotenv
+import os
+from fastapi.exceptions import RequestValidationError
+from starlette.status import HTTP_400_BAD_REQUEST
+from app.Exceptions.handler import custom_http_exception_handler, custom_validation_exception_handler
+
+
 
 # Create all tables in the database
 Base.metadata.create_all(bind=engine)
@@ -23,19 +30,11 @@ app.include_router(AuthR, prefix="/auth", tags=["users"])
 app.include_router(ProductR, prefix="/products", tags=["products"])
 app.include_router(CartR, prefix="/cart", tags=["cart"])
 
-@app.exception_handler(HTTPException)
-async def custom_http_exception_handler(request: Request, exc: HTTPException) -> JSONResponse:
-    """
-    Custom exception handler to return errors in a consistent JSON format.
-    """
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={
-            "error": True,
-            "message": exc.detail,
-            "code": exc.status_code
-        },
-    )
+
+
+
+app.add_exception_handler(RequestValidationError, handler=custom_validation_exception_handler)
+app.add_exception_handler(HTTPException, handler=custom_http_exception_handler)
 
 @app.get("/")
 def root() -> dict:

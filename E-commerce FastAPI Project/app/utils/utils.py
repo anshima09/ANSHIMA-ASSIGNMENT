@@ -29,7 +29,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     """
     return pwd_context.verify(plain_password, hashed_password)
 
-def generate_reset_token(expiry_minutes: int = 15) -> tuple[str, datetime]:
+def generate_reset_token(expiry_minutes: int = 5) -> tuple[str, datetime]:
     """
     Generate a unique password reset token and its expiration time.
 

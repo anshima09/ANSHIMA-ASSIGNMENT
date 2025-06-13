@@ -17,7 +17,7 @@ router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/signin")
 
 #for checking if the user is admin
-async def get_current_user_role(token: str = Depends(oauth2_scheme)) -> dict:
+def get_current_user_role(token: str = Depends(oauth2_scheme)) -> dict:
     """
     Dependency to check if the current user is an admin.
     Raises HTTPException if not admin.
@@ -29,7 +29,7 @@ async def get_current_user_role(token: str = Depends(oauth2_scheme)) -> dict:
 
 # admin can create a product
 @router.post("/create-product", status_code=status.HTTP_201_CREATED, response_model=ProductOut)
-async def create_product(
+def create_product(
     product: ProductCreate,
     db: Session = Depends(get_db),
     user: dict = Depends(get_current_user_role)
@@ -47,7 +47,7 @@ async def create_product(
 
 #admin can get all products
 @router.get("/getAllProducts", response_model=List[ProductOut])
-async def get_all_products(
+def get_all_products(
     skip: int = Query(0, ge=0), 
     limit: int = Query(10, ge=1, le=100), 
     db: Session = Depends(get_db),
@@ -66,7 +66,7 @@ async def get_all_products(
 
 #admin can get product by id
 @router.get("/getProductById/{product_id}", response_model=ProductOut)
-async def get_product_by_id(
+def get_product_by_id(
     product_id: int,
     db: Session = Depends(get_db),
     user: dict = Depends(get_current_user_role)
@@ -83,7 +83,7 @@ async def get_product_by_id(
 
 #admin can update product details 
 @router.put("/update-product/{product_id}", response_model=ProductOut)
-async def update_product(
+def update_product(
     product_id: int,
     product: ProductCreate,
     db: Session = Depends(get_db),
@@ -110,7 +110,7 @@ async def update_product(
 
 #admin can delete product
 @router.delete("/delete-product/{product_id}", status_code=status.HTTP_200_OK)
-async def delete_product(
+def delete_product(
     product_id: int,
     db: Session = Depends(get_db),
     user: dict = Depends(get_current_user_role)
@@ -131,7 +131,7 @@ async def delete_product(
 #users can get products with filters, sorting and pagination
 
 @router.get("/getProductsBySorting", response_model=List[ProductOut])
-async def list_products(
+def list_products(
     category: str = Query(None),
     min_price: float = Query(None, ge=0),
     max_price: float = Query(None, ge=0),
@@ -163,7 +163,7 @@ async def list_products(
 
 #users can search products by keyword in name or description
 @router.get("/search", response_model=List[ProductOut])
-async def search_products(
+def search_products(
     keyword: str = Query(..., min_length=1),
     db: Session = Depends(get_db)
 ) -> List[ProductOut]:
@@ -184,7 +184,7 @@ async def search_products(
 
 #user can get all products without any filters
 @router.get("/getAllProductsForUser", response_model=List[ProductOut])
-async def get_all_products_for_user(
+def get_all_products_for_user(
     skip: int = Query(0, ge=0), 
     limit: int = Query(10, ge=1, le=100), 
     db: Session = Depends(get_db),
@@ -201,7 +201,7 @@ async def get_all_products_for_user(
 
 
 @router.get("/getProducts/{id}", response_model=ProductOut)
-async def get_product_detail(
+def get_product_detail(
     id: int,
     db: Session = Depends(get_db)
 ) -> ProductOut:

@@ -12,7 +12,7 @@ from app.db.config import logger
 router = APIRouter()
 
 @router.post("/checkout", response_model=CheckoutResponse)
-async def checkout(
+def checkout(
     db: Session = Depends(get_db),
     user = Depends(decode_token)
 ) -> CheckoutResponse:

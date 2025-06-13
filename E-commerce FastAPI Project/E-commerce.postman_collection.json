@@ -1,0 +1,901 @@
+{
+	"info": {
+		"_postman_id": "6bb2219c-1ab8-4b28-83be-03b87f7173c2",
+		"name": "E-commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "35080843"
+	},
+	"item": [
+		{
+			"name": "Admin-Products-Functionality",
+			"item": [
+				{
+					"name": "create-product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NDk1NDk0Mjh9.7pXo-FbVpx1FXM372o7RFAEBrWmNLMeNumrMz_hk-60"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Accessories combo\",\r\n  \"description\": \"Accessories for womens including necklace, rings, bracelets\",\r\n  \"price\": 500,\r\n  \"stock\": 7,\r\n  \"category\": \"Accessories\",\r\n  \"image_url\": \"https://example.com/images/accessories.jpg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/products/create-product"
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NDk1NDk0Mjh9.7pXo-FbVpx1FXM372o7RFAEBrWmNLMeNumrMz_hk-60"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "http://127.0.0.1:8000/products/getAllProducts"
+					},
+					"response": []
+				},
+				{
+					"name": "get-product-by-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NDk1NDk0Mjh9.7pXo-FbVpx1FXM372o7RFAEBrWmNLMeNumrMz_hk-60"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/products/getProductById/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update-product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NDk1NDk2NDB9.onrJIQekIMb7nsJalIZ2XSZ5mxuZfxXg3NIUnn1KcJA"
+							}
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Accessories combo packet\",\r\n  \"description\": \"Accessories for womens including necklace, rings, bracelets\",\r\n  \"price\": 500,\r\n  \"stock\": 7,\r\n  \"category\": \"Accessories\",\r\n  \"image_url\": \"https://example.com/images/accessories.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/products/update-product/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NDk1NDk2NDB9.onrJIQekIMb7nsJalIZ2XSZ5mxuZfxXg3NIUnn1KcJA"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:8000/products/delete-product/10"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User-Products-Functionality",
+			"item": [
+				{
+					"name": "Search-By-Keyword",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/products/search?keyword=accessories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "min_price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "keyword",
+									"value": "accessories"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-products-by-sorting",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/products/getProductsBySorting?category=anshima",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"getProductsBySorting"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "anshima"
+								},
+								{
+									"key": "min_price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-products-by-id-by-user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/products/getProducts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"getProducts",
+								"1"
+							],
+							"query": [
+								{
+									"key": "min_price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-all-products-for-user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/products/getAllProductsForUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"getAllProductsForUser"
+							],
+							"query": [
+								{
+									"key": "min_price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users authentication",
+			"item": [
+				{
+					"name": "signup user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Garima Pathak\",\r\n    \"email\":\"sgarima348@gmail.com\",\r\n    \"password\":\"sgarima348\",\r\n    \"role\":\"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/auth/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Get-all-users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/auth/getAllUsers"
+					},
+					"response": []
+				},
+				{
+					"name": "Get-user-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/auth/getUsersById/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "sgarima348@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "sgarima34",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/auth/signin?username=garima66@gmail.com&password=garima665",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "garima66@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "garima665"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot-password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTgyNDc3NH0.PrOq0tgT1nfaISYzli3opzLk2oqiHZ-ZPUo-P_qCccE"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sgarima348@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/auth/forgot-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\":\"b4576948-b6a7-455a-8090-2c6effda4c32\",\r\n    \"new_password\":\"sgarima34\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/auth/reset-password"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart-functionalities",
+			"item": [
+				{
+					"name": "Add-cart-item",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTU3OTU4Nn0.gJGIhU26ctzuafpqo3ykjAj7flz3Jvn-Sq5J-XoIFiA"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTU1MzkxOX0.saQHZC6dcABxcm7xmTbyh0rLIt4giVN7jGuXeNS0bv0",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"product_id\": 1,\r\n  \"quantity\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/cart/addToCart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cart",
+								"addToCart"
+							],
+							"query": [
+								{
+									"key": "min_price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View-Cart",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTgyMjE1N30.09kJEqgfCGT66HifG7XFpLbubdZX23kBPZ2Shf-vscY"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTU1MzkxOX0.saQHZC6dcABxcm7xmTbyh0rLIt4giVN7jGuXeNS0bv0",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/cart/viewCart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cart",
+								"viewCart"
+							],
+							"query": [
+								{
+									"key": "min_price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update-Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTU1NTk2OH0.4AuXLGQiwvKXwvftGha4FpiW4GXgpAnYDiPrzPPCF2Q"
+							}
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTU1MzkxOX0.saQHZC6dcABxcm7xmTbyh0rLIt4giVN7jGuXeNS0bv0",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/cart/update-cart/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cart",
+								"update-cart",
+								"2"
+							],
+							"query": [
+								{
+									"key": "min_price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTU1NjEzMn0.WUUN7B-U7nv9ibmy01lxHT97Nt1lfvXZikI2PAzgsis"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTU1MzkxOX0.saQHZC6dcABxcm7xmTbyh0rLIt4giVN7jGuXeNS0bv0",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/cart/delete-cart/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cart",
+								"delete-cart",
+								"3"
+							],
+							"query": [
+								{
+									"key": "min_price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Checkout Functionality",
+			"item": [
+				{
+					"name": "checkout product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTU3OTU4Nn0.gJGIhU26ctzuafpqo3ykjAj7flz3Jvn-Sq5J-XoIFiA"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/order/checkout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"order",
+								"checkout"
+							],
+							"query": [
+								{
+									"key": "min_price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders Functionality",
+			"item": [
+				{
+					"name": "View-orders-by-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTgxMDk3MH0.KeFVZxfGwZQ6bC4rkuY1fDi-9Lc7atRQemCFvp2Dm_8"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/orders/view-orders-by-id/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"orders",
+								"view-orders-by-id",
+								"2"
+							],
+							"query": [
+								{
+									"key": "min_price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View-orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoidXNlciIsImV4cCI6MTc0OTgxMDk3MH0.KeFVZxfGwZQ6bC4rkuY1fDi-9Lc7atRQemCFvp2Dm_8"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/orders/view-orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"orders",
+								"view-orders"
+							],
+							"query": [
+								{
+									"key": "min_price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
