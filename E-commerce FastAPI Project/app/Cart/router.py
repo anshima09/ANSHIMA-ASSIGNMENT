@@ -71,6 +71,12 @@ def update_cart_item(
     if not db_item:
         logger.warning(f"User {user.id} tried to update non-existent cart item {item_id}.")
         raise HTTPException(status_code=404, detail="Item not found in cart")
+    
+    product = db.query(Product).filter(Product.id == db_item.product_id).first()
+    if not product or product.is_deleted:
+        logger.warning(f"User {user.id} tried to update cart item {item_id} with deleted product {db_item.product_id}.")
+        raise HTTPException(status_code=400, detail="Cannot update cart item for a deleted product.")
+    
     for key, value in item.dict(exclude_unset=True).items():
         setattr(db_item, key, value)
     db.commit()

@@ -12,6 +12,14 @@ from typing import List, Dict
 
 router = APIRouter()
 
+def admin_required(user):
+    """
+    Utility function to check if the user is an admin.
+    Raises HTTPException if not.
+    """
+    if not hasattr(user, "role") or user.role != "admin":
+        raise HTTPException(status_code=403, detail="Admin privileges required.")
+    return True
 
 # admin can create a product
 @router.post("/create-product", status_code=status.HTTP_201_CREATED, response_model=ProductOut)
@@ -23,6 +31,7 @@ def create_product(
     """
     Admin endpoint to create a new product.
     """
+    admin_required(user)
     new_product = Product(**product.dict(),created_by=user.id)
     db.add(new_product)
     db.commit()
@@ -42,7 +51,8 @@ def get_all_products(
     """
     Admin endpoint to retrieve all products with pagination.
     """
-    products = db.query(Product).offset(skip).limit(limit).all()
+    admin_required(user)
+    products = db.query(Product).filter(Product.is_deleted == False).offset(skip).limit(limit).all()
     if not products:
         logger.warning("No products found in the database (admin endpoint).")
         raise HTTPException(status_code=404, detail="No products found.")
@@ -60,7 +70,8 @@ def get_product_by_id(
     """
     Admin endpoint to get a product by its ID.
     """
-    product = db.query(Product).filter(Product.id == product_id).first()
+    admin_required(user)
+    product = db.query(Product).filter(Product.id == product_id,Product.is_deleted == False).first()
     if not product:
         logger.warning(f"Admin {user.get('user_id')} tried to fetch non-existent product ID {product_id}")
         raise HTTPException(status_code=404, detail="Product not found.")
@@ -78,12 +89,13 @@ def update_product(
     """
     Admin endpoint to update product details.
     """
-    if product.created_by != user.id:
-        raise HTTPException(status_code=403, detail="You are not authorized to modify this product.")
+    
     existing_product = db.query(Product).filter(Product.id == product_id).first()
     if not existing_product:
         logger.warning(f"Admin {user.id} tried to update non-existent product ID {product_id}")
         raise HTTPException(status_code=404, detail="Product not found")
+    if existing_product.created_by != user.id:
+        raise HTTPException(status_code=403, detail="You are not authorized to modify this product.")
     # Update fields
     existing_product.name = product.name
     existing_product.description = product.description
@@ -106,13 +118,13 @@ def delete_product(
     """
     Admin endpoint to delete a product by its ID.
     """
-    if product.created_by != user.id:
-        raise HTTPException(status_code=403, detail="You are not authorized to modify this product.")
+    
     product = db.query(Product).filter(Product.id == product_id).first()
     if not product:
         logger.warning(f"Admin {user.id} tried to delete non-existent product ID {product_id}")
         raise HTTPException(status_code=404, detail="Product not found")
-    
+    if product.created_by != user.id:
+        raise HTTPException(status_code=403, detail="You are not authorized to modify this product.")
     product.is_deleted = True
     db.commit()
     logger.info(f"Product ID {product_id} deleted by admin {user.id}")
@@ -130,17 +142,19 @@ def list_products(
     page: int = Query(1, ge=1),
     page_size: int = Query(10, ge=1, le=100),
     db: Session = Depends(get_db),
+    user = Depends(decode_token)  # Require authentication
+
 ) -> List[ProductOut]:
     """
     User endpoint to get products with optional filters, sorting, and pagination.
     """
     query = db.query(Product)
     if category:
-        query = query.filter(Product.category == category)
+        query = query.filter(Product.category == category,Product.is_deleted == False)
     if min_price is not None:
-        query = query.filter(Product.price >= min_price)
+        query = query.filter(Product.price >= min_price, Product.is_deleted == False)
     if max_price is not None:
-        query = query.filter(Product.price <= max_price)
+        query = query.filter(Product.price <= max_price, Product.is_deleted == False)
     sort_column = getattr(Product, sort_by)
     query = query.order_by(sort_column)
     total = query.count()
@@ -156,7 +170,9 @@ def list_products(
 @router.get("/search", response_model=List[ProductOut])
 def search_products(
     keyword: str = Query(..., min_length=1),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user = Depends(decode_token)  # Require authentication
+
 ) -> List[ProductOut]:
     """
     User endpoint to search products by keyword in name or description.
@@ -166,7 +182,7 @@ def search_products(
             Product.name.ilike(f"%{keyword}%"),
             Product.description.ilike(f"%{keyword}%")
         )
-    ).all()
+    ).filter(Product.is_deleted == False).all()
     if not products:
         logger.warning(f"No products found matching search keyword: {keyword}")
         raise HTTPException(status_code=404, detail="No products found matching the search keyword.")
@@ -179,11 +195,13 @@ def get_all_products_for_user(
     skip: int = Query(0, ge=0), 
     limit: int = Query(10, ge=1, le=100), 
     db: Session = Depends(get_db),
+    user = Depends(decode_token)  # Require authentication
+
 ) -> List[ProductOut]:
     """
     User endpoint to get all products with pagination (no filters).
     """
-    products = db.query(Product).offset(skip).limit(limit).all()
+    products = db.query(Product).filter(Product.is_deleted == False).offset(skip).limit(limit).all()
     if not products:
         logger.warning("No products found (user endpoint).")
         raise HTTPException(status_code=404, detail="No products found.")
@@ -194,12 +212,14 @@ def get_all_products_for_user(
 @router.get("/getProducts/{id}", response_model=ProductOut)
 def get_product_detail(
     id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user = Depends(decode_token)  # Require authentication
+
 ) -> ProductOut:
     """
     User endpoint to get product details by product ID.
     """
-    product = db.query(Product).filter(Product.id == id).first()
+    product = db.query(Product).filter(Product.id == id,Product.is_deleted == False).first()
     if not product:
         logger.warning(f"User tried to fetch non-existent product ID {id}")
         raise HTTPException(status_code=404, detail="Product not found.")

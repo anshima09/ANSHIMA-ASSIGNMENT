@@ -3,6 +3,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi import HTTPException, Request
 from starlette.status import HTTP_400_BAD_REQUEST
+from starlette.status import HTTP_500_INTERNAL_SERVER_ERROR
 
 
 def custom_http_exception_handler(request: Request, exc: HTTPException) -> JSONResponse:
@@ -34,3 +35,16 @@ def custom_validation_exception_handler(request: Request, exc: RequestValidation
                     "code": HTTP_400_BAD_REQUEST,
                 },
             )
+
+def global_exception_handler(request: Request, exc: Exception):
+    """
+    Global exception handler for uncaught exceptions.
+    """
+    return JSONResponse(
+        status_code=HTTP_500_INTERNAL_SERVER_ERROR,
+        content={
+            "error": True,
+            "message": "An unexpected error occurred.",
+            "code": HTTP_500_INTERNAL_SERVER_ERROR,
+        },
+    )

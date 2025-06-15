@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 import os
 from fastapi.exceptions import RequestValidationError
 from starlette.status import HTTP_400_BAD_REQUEST
-from app.Exceptions.handler import custom_http_exception_handler, custom_validation_exception_handler
+from app.Exceptions.handler import custom_http_exception_handler, custom_validation_exception_handler, global_exception_handler
 
 
 # Create all tables in the database
@@ -34,6 +34,7 @@ app.include_router(CartR, prefix="/cart", tags=["cart"])
 
 app.add_exception_handler(RequestValidationError, handler=custom_validation_exception_handler)
 app.add_exception_handler(HTTPException, handler=custom_http_exception_handler)
+app.add_exception_handler(Exception, handler= global_exception_handler)
 
 @app.get("/")
 def root() -> dict:

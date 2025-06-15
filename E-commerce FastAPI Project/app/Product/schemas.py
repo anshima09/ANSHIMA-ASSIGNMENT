@@ -9,6 +9,7 @@ class ProductBase(BaseModel):
     stock: int  # Available stock
     category: Optional[str] = None  # Product category
     image_url: Optional[str] = None  # URL to product image
+    
 
 # Schema for creating a new product (inherits from ProductBase)
 class ProductCreate(ProductBase):

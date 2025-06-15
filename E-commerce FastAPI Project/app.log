@@ -504,3 +504,49 @@ Traceback (most recent call last):
 AttributeError: module 'bcrypt' has no attribute '__about__'
 2025-06-15 19:18:32,958 | WARNING | ecommerce | Failed login attempt for email: sgarima348@gmail.com
 2025-06-15 19:18:39,249 | INFO | ecommerce | User logged in: sgarima348@gmail.com
+2025-06-15 20:19:37,792 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 20:19:38,213 | INFO | ecommerce | User logged in: sgarima348@gmail.com
+2025-06-15 20:19:58,236 | INFO | ecommerce | User 3 added product 1 (qty: 2) to cart.
+2025-06-15 20:20:11,227 | INFO | ecommerce | Order 1 created for user 3 with total 51.98.
+2025-06-15 20:20:11,246 | INFO | ecommerce | Order items added for order 1.
+2025-06-15 20:20:11,260 | INFO | ecommerce | Cart cleared for user 3 after checkout.
+2025-06-15 20:37:53,570 | INFO | ecommerce | New user registered: abhishek34@gmail.com
+2025-06-15 20:38:16,948 | INFO | ecommerce | User logged in: abhishek34@gmail.com
+2025-06-15 21:47:02,843 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 21:47:03,089 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 21:47:49,838 | INFO | ecommerce | Product created: iphone16 by admin 1
+2025-06-15 21:50:37,815 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 21:50:47,220 | INFO | ecommerce | Product ID 5 deleted by admin 1
+2025-06-15 21:52:39,628 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 21:52:39,886 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 22:02:09,085 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 22:02:09,339 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 22:11:35,355 | INFO | ecommerce | Password reset token generated for user: sgarima348@gmail.com
+2025-06-15 22:11:50,998 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 22:11:51,247 | INFO | ecommerce | Password reset for user: sgarima348@gmail.com
+2025-06-15 22:11:56,076 | WARNING | ecommerce | Invalid or expired reset token used: 3ccf739a-56b5-495b-9243-a4eb502f3f83
