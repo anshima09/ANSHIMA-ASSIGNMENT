@@ -550,3 +550,8 @@ Traceback (most recent call last):
 AttributeError: module 'bcrypt' has no attribute '__about__'
 2025-06-15 22:11:51,247 | INFO | ecommerce | Password reset for user: sgarima348@gmail.com
 2025-06-15 22:11:56,076 | WARNING | ecommerce | Invalid or expired reset token used: 3ccf739a-56b5-495b-9243-a4eb502f3f83
+2025-06-15 22:43:02,419 | ERROR | fastapi | Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
