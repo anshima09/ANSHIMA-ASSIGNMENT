@@ -158,3 +158,283 @@ Traceback (most recent call last):
 AttributeError: module 'bcrypt' has no attribute '__about__'
 2025-06-14 00:41:59,873 | INFO | ecommerce | User logged in: sgarima348@gmail.com
 2025-06-14 00:42:12,282 | INFO | ecommerce | Password reset token generated for user: sgarima348@gmail.com
+2025-06-15 00:20:50,584 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 00:20:51,063 | INFO | ecommerce | New user registered: sgarima348@gmail.com
+2025-06-15 00:21:10,353 | INFO | ecommerce | New user registered: mahima11@gmail.com
+2025-06-15 00:21:36,769 | INFO | ecommerce | New user registered: anshima54@gmail.com
+2025-06-15 00:21:47,570 | INFO | ecommerce | Admin fetched all users. Total users: 3
+2025-06-15 11:26:21,373 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 11:26:21,789 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 11:30:18,176 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 11:30:18,579 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 11:38:25,261 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 11:38:25,675 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 11:52:49,799 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 11:52:50,078 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 11:53:16,659 | INFO | ecommerce | User fetched product ID 1
+2025-06-15 11:53:21,723 | INFO | ecommerce | User fetched all products. Total: 4
+2025-06-15 11:53:35,079 | WARNING | ecommerce | No products found for user filter/search request.
+2025-06-15 11:53:49,046 | INFO | ecommerce | User fetched products with filters. Returned: 2
+2025-06-15 11:54:37,268 | INFO | ecommerce | Password reset token generated for user: sgarima348@gmail.com
+2025-06-15 11:55:19,262 | INFO | ecommerce | Admin fetched all users. Total users: 3
+2025-06-15 11:55:59,582 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 11:56:19,225 | INFO | ecommerce | User 2 added product 1 (qty: 3) to cart.
+2025-06-15 11:56:53,215 | INFO | ecommerce | User 2 viewed their cart. Items: 1
+2025-06-15 12:02:08,508 | INFO | ecommerce | User 2 added product 2 (qty: 1) to cart.
+2025-06-15 12:02:17,766 | INFO | ecommerce | User 2 viewed their cart. Items: 2
+2025-06-15 12:04:20,331 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 12:04:20,572 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 12:04:20,715 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 12:04:28,784 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 12:04:41,527 | INFO | ecommerce | User 2 deleted cart item 2.
+2025-06-15 12:04:54,362 | INFO | ecommerce | User 2 added product 2 (qty: 1) to cart.
+2025-06-15 12:07:00,914 | WARNING | ecommerce | User 2 tried to delete non-existent cart item 2.
+2025-06-15 12:07:09,302 | INFO | ecommerce | User 2 deleted cart item 3.
+2025-06-15 12:07:18,753 | INFO | ecommerce | User 2 added product 2 (qty: 1) to cart.
+2025-06-15 12:07:25,008 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 12:07:25,253 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 12:07:36,025 | INFO | ecommerce | User 2 viewed their cart. Items: 2
+2025-06-15 12:07:43,232 | INFO | ecommerce | User 2 viewed their cart. Items: 2
+2025-06-15 12:07:47,647 | INFO | ecommerce | User 2 viewed their cart. Items: 2
+2025-06-15 12:08:26,436 | INFO | ecommerce | User 2 viewed their cart. Items: 2
+2025-06-15 12:08:28,367 | INFO | ecommerce | User 2 viewed their cart. Items: 2
+2025-06-15 12:09:53,012 | INFO | ecommerce | User 2 viewed their cart. Items: 2
+2025-06-15 12:10:10,077 | INFO | ecommerce | User 2 added product 3 (qty: 3) to cart.
+2025-06-15 12:10:25,580 | INFO | ecommerce | User 2 viewed their cart. Items: 3
+2025-06-15 12:10:42,843 | INFO | ecommerce | User 2 viewed their cart. Items: 3
+2025-06-15 12:10:56,139 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 12:10:56,393 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 12:11:19,001 | INFO | ecommerce | User 2 updated cart item 4.
+2025-06-15 12:12:08,567 | INFO | ecommerce | User 2 updated cart item 4.
+2025-06-15 12:12:47,865 | WARNING | ecommerce | User 2 tried to delete non-existent cart item 6.
+2025-06-15 12:12:57,424 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 12:12:57,665 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 12:13:08,681 | INFO | ecommerce | User 2 deleted cart item 5.
+2025-06-15 12:13:28,541 | INFO | ecommerce | Order 1 created for user 2 with total 157.95999999999998.
+2025-06-15 12:13:28,555 | INFO | ecommerce | Order items added for order 1.
+2025-06-15 12:13:28,562 | INFO | ecommerce | Cart cleared for user 2 after checkout.
+2025-06-15 12:13:43,727 | WARNING | ecommerce | User 2 tried to fetch non-existent or unauthorized order ID 2
+2025-06-15 12:13:48,175 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 12:14:04,414 | INFO | ecommerce | User 2 fetched their order history. Total orders: 1
+2025-06-15 12:14:19,529 | INFO | ecommerce | User fetched all products. Total: 4
+2025-06-15 12:14:26,978 | INFO | ecommerce | User fetched product ID 1
+2025-06-15 12:14:33,624 | WARNING | ecommerce | No products found matching search keyword: accessories
+2025-06-15 12:14:42,955 | WARNING | ecommerce | No products found matching search keyword: Accessories
+2025-06-15 12:21:52,707 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 12:21:52,952 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 12:22:03,946 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 12:25:20,046 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 12:26:04,559 | INFO | ecommerce | User fetched all products. Total: 4
+2025-06-15 12:39:13,808 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 12:39:14,057 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 12:40:27,472 | INFO | ecommerce | User fetched all products. Total: 4
+2025-06-15 12:44:18,534 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 12:44:18,776 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 12:46:31,053 | INFO | ecommerce | Admin 3 fetched product ID 1
+2025-06-15 12:47:08,889 | INFO | ecommerce | Admin 3 fetched all products. Total: 4
+2025-06-15 12:47:55,802 | INFO | ecommerce | Product created: Accessories combo by admin 3
+2025-06-15 12:48:08,594 | INFO | ecommerce | Admin fetched all users. Total users: 3
+2025-06-15 12:50:34,908 | INFO | ecommerce | Product ID 5 updated by admin 3
+2025-06-15 12:50:57,169 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 12:50:57,413 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 12:51:10,782 | INFO | ecommerce | Product ID 5 deleted by admin 3
+2025-06-15 12:51:24,476 | INFO | ecommerce | Admin 3 fetched all products. Total: 4
+2025-06-15 12:51:27,685 | INFO | ecommerce | Admin 3 fetched product ID 1
+2025-06-15 12:52:09,247 | INFO | ecommerce | Admin 3 fetched product ID 1
+2025-06-15 12:52:16,663 | INFO | ecommerce | Admin 3 fetched product ID 1
+2025-06-15 13:55:03,179 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 13:55:03,448 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 13:55:16,504 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 13:55:54,598 | INFO | ecommerce | User 2 fetched their order history. Total orders: 1
+2025-06-15 13:57:27,080 | INFO | ecommerce | User 2 fetched their order history. Total orders: 1
+2025-06-15 13:57:29,561 | INFO | ecommerce | User 2 fetched their order history. Total orders: 1
+2025-06-15 13:57:57,363 | INFO | ecommerce | User 2 fetched their order history. Total orders: 1
+2025-06-15 13:58:09,430 | INFO | ecommerce | User 2 fetched their order history. Total orders: 1
+2025-06-15 14:05:53,040 | INFO | ecommerce | User 2 fetched their order history. Total orders: 1
+2025-06-15 14:06:02,175 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:06:14,248 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:06:55,692 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:07:24,983 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:13:08,617 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:26:26,409 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 14:26:26,655 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 14:26:43,858 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:27:03,486 | INFO | ecommerce | User 2 fetched their order history. Total orders: 1
+2025-06-15 14:27:13,020 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:30:08,793 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:30:25,369 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:32:42,674 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:32:44,420 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:33:50,858 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:34:57,977 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 14:35:10,254 | INFO | ecommerce | User 2 fetched their order history. Total orders: 1
+2025-06-15 15:02:50,236 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 15:02:50,480 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 15:03:02,596 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 15:03:10,497 | INFO | ecommerce | User 2 fetched their order history. Total orders: 1
+2025-06-15 15:14:07,801 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 15:14:08,045 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 15:14:17,899 | INFO | ecommerce | User 2 fetched their order history. Total orders: 1
+2025-06-15 15:14:25,526 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 15:16:32,314 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 15:18:25,268 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 15:19:11,718 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 15:19:11,959 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 15:19:29,828 | INFO | ecommerce | Product ID 4 deleted by admin 3
+2025-06-15 15:21:36,893 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 15:22:00,918 | INFO | ecommerce | User 2 fetched details for order ID 1
+2025-06-15 15:25:04,390 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 15:25:04,636 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 15:25:21,066 | INFO | ecommerce | Admin 3 fetched all products. Total: 4
+2025-06-15 15:28:37,155 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 15:28:37,405 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 15:29:23,639 | INFO | ecommerce | User logged in: sgarima348@gmail.com
+2025-06-15 15:29:36,167 | WARNING | ecommerce | User 1 tried to add deleted product 4 to cart.
+2025-06-15 15:39:20,033 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 15:39:20,278 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 15:40:21,653 | INFO | ecommerce | Product created: Refrigerator by admin 3
+2025-06-15 15:40:33,780 | INFO | ecommerce | Product created: Refrigerator by admin 3
+2025-06-15 15:42:54,322 | INFO | ecommerce | Product ID 7 updated by admin 3
+2025-06-15 15:43:13,513 | INFO | ecommerce | Product ID 7 deleted by admin 3
+2025-06-15 15:44:02,431 | INFO | ecommerce | User logged in: sgarima348@gmail.com
+2025-06-15 15:44:25,075 | INFO | ecommerce | User 1 added product 6 (qty: 2) to cart.
+2025-06-15 15:45:14,123 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 15:45:30,511 | INFO | ecommerce | Product ID 6 deleted by admin 3
+2025-06-15 15:46:10,278 | WARNING | ecommerce | User 1 attempted to checkout deleted products: ['Refrigerator']
+2025-06-15 15:47:49,282 | WARNING | ecommerce | Failed login attempt for email: sgarima348gmail.com
+2025-06-15 15:47:57,832 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 15:47:58,076 | INFO | ecommerce | User logged in: sgarima348@gmail.com
+2025-06-15 15:48:08,962 | INFO | ecommerce | User 1 viewed their cart. Items: 1
+2025-06-15 16:14:05,387 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 16:14:05,648 | INFO | ecommerce | New user registered: anshima54@gmail.com
+2025-06-15 16:17:24,282 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 16:17:24,536 | INFO | ecommerce | New user registered: anshima54@gmail.com
+2025-06-15 16:18:23,310 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\e-commerce\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 16:18:23,562 | INFO | ecommerce | New user registered: sgarima348@gmail.com
+2025-06-15 16:18:37,352 | INFO | ecommerce | New user registered: mahima11@gmail.com
+2025-06-15 16:18:51,429 | INFO | ecommerce | User logged in: sgarima348@gmail.com

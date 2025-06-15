@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.Cart.models import CartItem
-from app.Cart.schemas import CartItemCreate, CartItemOut, CartItemUpdate, CartItemBase
+from app.Cart.schemas import CartItemCreate, CartItemOut, CartItemUpdate, CartItemBase, AddToCartResponse
 from app.db.database import get_db
 from sqlalchemy.orm import Session
 from app.User.models import User
@@ -11,7 +11,7 @@ from app.db.config import logger
 
 router = APIRouter()
 
-@router.post("/addToCart")
+@router.post("/addToCart",response_model=AddToCartResponse)
 def add_cart_item(
     item: CartItemCreate,
     db: Session = Depends(get_db),
@@ -20,15 +20,23 @@ def add_cart_item(
     """
     Add an item to the user's cart.
     """
-    db_item = CartItem(**item.dict(), user_id=user.id)
-    if not db_item.product_id:
-        logger.warning(f"User {user.id} tried to add a cart item with missing product_id.")
+    product = db.query(Product).filter(Product.id == item.product_id).first()
+    if not product:
+        logger.warning(f"User {user.id} tried to add a cart item with missing product_id {item.product_id}.")
         raise HTTPException(status_code=400, detail="Product with this ID does not exist.")
+    if product.is_deleted:
+        logger.warning(f"User {user.id} tried to add deleted product {item.product_id} to cart.")
+        raise HTTPException(status_code=400, detail="Cannot add deleted product to cart.")
+
+    db_item = CartItem(**item.dict(), user_id=user.id)
     db.add(db_item)
     db.commit()
     db.refresh(db_item)
     logger.info(f"User {user.id} added product {db_item.product_id} (qty: {db_item.quantity}) to cart.")
-    return {"message": "Item added to cart", "item": db_item}
+    return {
+        "message": "Item added to cart",
+        "item": db_item
+    }
 
 @router.get("/viewCart", response_model=List[CartItemOut])
 def view_cart(
@@ -45,7 +53,7 @@ def view_cart(
     logger.info(f"User {user.id} viewed their cart. Items: {len(cart_items)}")
     return cart_items
 
-@router.put("/update-cart/{item_id}", response_model=CartItemOut)
+@router.put("/update-cart/{item_id}", response_model=AddToCartResponse)
 def update_cart_item(
     item_id: int,
     item: CartItemUpdate,
@@ -64,7 +72,10 @@ def update_cart_item(
     db.commit()
     db.refresh(db_item)
     logger.info(f"User {user.id} updated cart item {item_id}.")
-    return db_item
+    return {
+        "message": "Item quantity updated",
+        "item": db_item
+    }
 
 @router.delete("/delete-cart/{item_id}", response_model=str)
 def delete_cart_item(
@@ -82,4 +93,4 @@ def delete_cart_item(
     db.delete(db_item)
     db.commit()
     logger.info(f"User {user.id} deleted cart item {item_id}.")
-    return "Item deleted from cart"
+    return "Item deleted from cart with ID: "+ str(item_id)

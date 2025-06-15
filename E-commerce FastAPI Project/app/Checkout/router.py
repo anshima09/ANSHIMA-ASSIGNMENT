@@ -11,6 +11,8 @@ from app.db.config import logger
 
 router = APIRouter()
 
+# ...existing code...
+
 @router.post("/checkout", response_model=CheckoutResponse)
 def checkout(
     db: Session = Depends(get_db),
@@ -28,12 +30,16 @@ def checkout(
 
     total_amount = 0
     order_items = []
+    invalid_products = []
 
     # Prepare order items and calculate total amount
     for item in cart_items:
         product = db.query(Product).filter(Product.id == item.product_id).first()
         if not product:
             logger.warning(f"Product ID {item.product_id} not found during checkout for user {user.id}.")
+            continue
+        if product.is_deleted:
+            invalid_products.append(product.name)
             continue
         item_total = item.quantity * product.price
         total_amount += item_total
@@ -42,6 +48,17 @@ def checkout(
             "quantity": item.quantity,
             "price_at_purchase": product.price
         })
+
+    if invalid_products:
+        logger.warning(f"User {user.id} attempted to checkout deleted products: {invalid_products}")
+        raise HTTPException(
+            status_code=400,
+            detail=f"Cannot checkout deleted products: {', '.join(invalid_products)}"
+        )
+
+    if not order_items:
+        logger.warning(f"User {user.id} has no valid products to checkout.")
+        raise HTTPException(status_code=400, detail="No valid products to checkout.")
 
     # Create the order
     order = Order(
@@ -61,15 +78,4 @@ def checkout(
     db.commit()
     logger.info(f"Order items added for order {order.id}.")
 
-    # Clear the user's cart
-    for item in cart_items:
-        db.delete(item)
-    db.commit()
-    logger.info(f"Cart cleared for user {user.id} after checkout.")
-
-    # Return checkout response
-    return CheckoutResponse(
-        message="Payment successful (dummy)! Order placed.",
-        order_id=order.id,
-        total_amount=total_amount
-    )
+    # Clear

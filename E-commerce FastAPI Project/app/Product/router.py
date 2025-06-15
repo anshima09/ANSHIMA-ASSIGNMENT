@@ -4,7 +4,6 @@ from app.db.database import get_db
 from app.Product.models import Product
 from app.Product.schemas import ProductCreate,ProductOut
 from app.utils.oauth2 import decode_token
-from fastapi.security import OAuth2PasswordBearer
 from typing import List
 from sqlalchemy import or_
 from app.db.config import logger
@@ -14,34 +13,21 @@ from typing import List, Dict
 router = APIRouter()
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/signin")
-
-#for checking if the user is admin
-def get_current_user_role(token: str = Depends(oauth2_scheme)) -> dict:
-    """
-    Dependency to check if the current user is an admin.
-    Raises HTTPException if not admin.
-    """
-    data = decode_token(token)
-    if not data or data.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admins only")
-    return data
-
 # admin can create a product
 @router.post("/create-product", status_code=status.HTTP_201_CREATED, response_model=ProductOut)
 def create_product(
     product: ProductCreate,
     db: Session = Depends(get_db),
-    user: dict = Depends(get_current_user_role)
+    user= Depends(decode_token)
 ) -> ProductOut:
     """
     Admin endpoint to create a new product.
     """
-    new_product = Product(**product.dict())
+    new_product = Product(**product.dict(),created_by=user.id)
     db.add(new_product)
     db.commit()
     db.refresh(new_product)
-    logger.info(f"Product created: {new_product.name} by admin {user.get('user_id')}")
+    logger.info(f"Product created: {new_product.name} by admin {user.id}")
     return new_product
 
 
@@ -51,7 +37,7 @@ def get_all_products(
     skip: int = Query(0, ge=0), 
     limit: int = Query(10, ge=1, le=100), 
     db: Session = Depends(get_db),
-    user: dict = Depends(get_current_user_role)
+    user= Depends(decode_token)
 ) -> List[ProductOut]:
     """
     Admin endpoint to retrieve all products with pagination.
@@ -60,7 +46,7 @@ def get_all_products(
     if not products:
         logger.warning("No products found in the database (admin endpoint).")
         raise HTTPException(status_code=404, detail="No products found.")
-    logger.info(f"Admin {user.get('user_id')} fetched all products. Total: {len(products)}")
+    logger.info(f"Admin {user.id} fetched all products. Total: {len(products)}")
     return products
 
 
@@ -69,7 +55,7 @@ def get_all_products(
 def get_product_by_id(
     product_id: int,
     db: Session = Depends(get_db),
-    user: dict = Depends(get_current_user_role)
+    user = Depends(decode_token)
 ) -> ProductOut:
     """
     Admin endpoint to get a product by its ID.
@@ -78,7 +64,7 @@ def get_product_by_id(
     if not product:
         logger.warning(f"Admin {user.get('user_id')} tried to fetch non-existent product ID {product_id}")
         raise HTTPException(status_code=404, detail="Product not found.")
-    logger.info(f"Admin {user.get('user_id')} fetched product ID {product_id}")
+    logger.info(f"Admin {user.id} fetched product ID {product_id}")
     return product
 
 #admin can update product details 
@@ -87,14 +73,16 @@ def update_product(
     product_id: int,
     product: ProductCreate,
     db: Session = Depends(get_db),
-    user: dict = Depends(get_current_user_role)
+    user = Depends(decode_token)
 ) -> ProductOut:
     """
     Admin endpoint to update product details.
     """
+    if product.created_by != user.id:
+        raise HTTPException(status_code=403, detail="You are not authorized to modify this product.")
     existing_product = db.query(Product).filter(Product.id == product_id).first()
     if not existing_product:
-        logger.warning(f"Admin {user.get('user_id')} tried to update non-existent product ID {product_id}")
+        logger.warning(f"Admin {user.id} tried to update non-existent product ID {product_id}")
         raise HTTPException(status_code=404, detail="Product not found")
     # Update fields
     existing_product.name = product.name
@@ -105,7 +93,7 @@ def update_product(
     existing_product.image_url = product.image_url
     db.commit()
     db.refresh(existing_product)
-    logger.info(f"Product ID {product_id} updated by admin {user.get('user_id')}")
+    logger.info(f"Product ID {product_id} updated by admin {user.id}")
     return existing_product
 
 #admin can delete product
@@ -113,18 +101,21 @@ def update_product(
 def delete_product(
     product_id: int,
     db: Session = Depends(get_db),
-    user: dict = Depends(get_current_user_role)
+    user= Depends(decode_token)
 ) -> Dict[str, str]:
     """
     Admin endpoint to delete a product by its ID.
     """
+    if product.created_by != user.id:
+        raise HTTPException(status_code=403, detail="You are not authorized to modify this product.")
     product = db.query(Product).filter(Product.id == product_id).first()
     if not product:
-        logger.warning(f"Admin {user.get('user_id')} tried to delete non-existent product ID {product_id}")
+        logger.warning(f"Admin {user.id} tried to delete non-existent product ID {product_id}")
         raise HTTPException(status_code=404, detail="Product not found")
-    db.delete(product)
+    
+    product.is_deleted = True
     db.commit()
-    logger.info(f"Product ID {product_id} deleted by admin {user.get('user_id')}")
+    logger.info(f"Product ID {product_id} deleted by admin {user.id}")
     return {"detail": "Product deleted successfully"}
 
 

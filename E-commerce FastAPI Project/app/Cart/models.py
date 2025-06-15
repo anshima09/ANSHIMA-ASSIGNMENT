@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from app.db.database import Base
+from app.Product import models
+from app.User import models
 
 
 

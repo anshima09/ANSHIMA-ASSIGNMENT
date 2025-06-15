@@ -17,7 +17,6 @@ from starlette.status import HTTP_400_BAD_REQUEST
 from app.Exceptions.handler import custom_http_exception_handler, custom_validation_exception_handler
 
 
-
 # Create all tables in the database
 Base.metadata.create_all(bind=engine)
 

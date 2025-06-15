@@ -22,3 +22,6 @@ class CartItemOut(BaseModel):
     class Config:
         from_attributes = True
 
+class AddToCartResponse(BaseModel):
+    message: str
+    item: CartItemOut

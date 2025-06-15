@@ -20,9 +20,13 @@ class ProductUpdate(BaseModel):
     stock: Optional[int] = None
     category: Optional[str] = None
     image_url: Optional[str] = None
-
+    
 class ProductOut(ProductBase):
+    
     id: int
+    is_deleted: bool
+    
 
     class Config:
         from_attributes = True
+
