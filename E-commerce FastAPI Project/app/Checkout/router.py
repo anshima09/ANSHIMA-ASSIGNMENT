@@ -48,7 +48,7 @@ def checkout(
             "quantity": item.quantity,
             "price_at_purchase": product.price
         })
-
+    
     if invalid_products:
         logger.warning(f"User {user.id} attempted to checkout deleted products: {invalid_products}")
         raise HTTPException(
@@ -78,4 +78,15 @@ def checkout(
     db.commit()
     logger.info(f"Order items added for order {order.id}.")
 
-    # Clear
+    # Clear the user's cart
+    for item in cart_items:
+        db.delete(item)
+    db.commit()
+    logger.info(f"Cart cleared for user {user.id} after checkout.")
+
+    # Return checkout response
+    return CheckoutResponse(
+        message="Payment successful (dummy)! Order placed.",
+        order_id=order.id,
+        total_amount=total_amount
+    )
