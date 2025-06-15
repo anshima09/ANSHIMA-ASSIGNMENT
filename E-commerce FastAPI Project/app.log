@@ -555,3 +555,10 @@ You can install "python-multipart" with:
 
 pip install python-multipart
 
+2025-06-15 22:44:33,361 | INFO | ecommerce | Admin fetched all users. Total users: 4
+2025-06-15 22:50:01,048 | ERROR | fastapi | Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-06-15 22:51:28,994 | INFO | ecommerce | Admin fetched all users. Total users: 4
