@@ -9,6 +9,8 @@ from typing import List
 
 router = APIRouter()
 
+# Endpoint to retrieve the order history for the currently authenticated user
+
 @router.get("/view-orders", response_model=List[OrderMetaOut])
 def get_order_history(
     db: Session = Depends(get_db),
@@ -25,6 +27,7 @@ def get_order_history(
     logger.info(f"User {user.id} fetched their order history. Total orders: {len(orders)}")
     return orders
 
+# Endpoint to retrieve the details of a specific order by order ID for the authenticated user
 @router.get("/view-orders-by-id/{order_id}", response_model=OrderOut)
 def get_order_detail(
     order_id: int,

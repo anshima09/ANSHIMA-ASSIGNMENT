@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from app.db.database import get_db
 from app.User.models import User
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
-from app.User.schemas import UserSignup, UserOut,ForgotPassword, ResetPassword
-from app.User.models import User,PasswordResetToken
+from app.User.schemas import UserSignup, UserOut, ForgotPassword, ResetPassword
+from app.User.models import User, PasswordResetToken
 from sqlalchemy.orm import Session
 from typing import List
 from app.utils.utils import hash_password, generate_reset_token, verify_password
@@ -14,9 +14,9 @@ from app.db.config import logger
 from app.utils.email import sending_email_with_token
 from typing import Dict, Any
 
-
 router = APIRouter()
 
+# Endpoint for user login: authenticates user and returns JWT tokens
 @router.post("/signin")
 def login(
     users_credentials: OAuth2PasswordRequestForm = Depends(),
@@ -38,7 +38,7 @@ def login(
         "user": user.email
     }
 
-
+# Endpoint for user signup: registers a new user
 @router.post("/signup", status_code=status.HTTP_201_CREATED, response_model=UserOut)
 def signup(
     user: UserSignup,
@@ -59,8 +59,7 @@ def signup(
     logger.info(f"New user registered: {new_user.email}")
     return new_user
 
-
-#admin sepcific
+# Endpoint for admin to retrieve all users
 @router.get("/getAllUsers", response_model=List[UserOut])
 def get_all_users(
     db: Session = Depends(get_db)
@@ -75,8 +74,7 @@ def get_all_users(
     logger.info(f"Admin fetched all users. Total users: {len(users)}")
     return users
 
-
-
+# Endpoint for forgot password: generates and emails a password reset token
 @router.post("/forgot-password", status_code=status.HTTP_201_CREATED)
 def secure_forgot_password(
     request: ForgotPassword,
@@ -97,22 +95,18 @@ def secure_forgot_password(
     db.commit()
 
     # Send token via email
-    #sender = "anshima0906s@gmail.com"
-    #password = "tbyrlyjphiejvqxe"  
     receiver = user.email
     receiver_name = user.name
     sending_email_with_token(
-        #sender=sender,
-        #password=password,
         receiver=receiver,
         reset_token=token,
         receiver_name=receiver_name
     )
 
     logger.info(f"Password reset token generated for user: {user.email}")
-    return {"message": "Reset token sent to your email.", "token":token}   
+    return {"message": "Reset token sent to your email.", "token": token}   
 
-
+# Endpoint for resetting password: resets the user's password using a valid token
 @router.post("/reset-password")
 def secure_reset_password(
     request: ResetPassword,
@@ -136,7 +130,4 @@ def secure_reset_password(
     db.delete(token_entry)
     db.commit()
     logger.info(f"Password reset for user: {user.email}")
-
     return {"message": "Password successfully reset"}
-
-

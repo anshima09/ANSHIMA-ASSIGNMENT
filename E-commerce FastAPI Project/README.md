@@ -54,24 +54,49 @@ Ensure the following are installed and understood before setup:
 ## 📁 Directory Layout
 
 ```
-python_project/
+E-COMMERCE FASTAPI PROJECT/
 ├── alembic/
-│   └── versions/
+│   ├── versions/
+│   ├── env.py
 ├── app/
 │   ├── main.py
-│   ├── core/
-│   ├── auth/
-│   ├── products/
-│   ├── cart/
-│   ├── orders/
-│   ├── checkout/
-│   ├── exceptions/
-│   └── utils/
-├── .env
+│   ├── db/
+│   │   ├── config.py
+│   │   ├── database.py
+│   ├── User/
+│   │   ├── models.py
+│   │   ├── routes.py
+│   │   ├── schemas.py
+│   ├── Product/
+│   │   ├── models.py
+│   │   ├── routes.py
+│   │   ├── schemas.py
+│   ├── Cart/
+│   │   ├── models.py
+│   │   ├── routes.py
+│   │   ├── schemas.py
+│   ├── Order/
+│   │   ├── models.py
+│   │   ├── routes.py
+│   │   ├── schemas.py
+│   ├── Checkout/
+│   │   ├── router.py
+│   │   ├── schemas.py
+│   ├── Exceptions/
+│   │   ├── handler.py
+│   ├── utils/
+│   │   ├── email.py
+│   │   ├── oauth2.py
+│   │   ├── utils.py
+├── e-commerce/
+├── .gitignore
 ├── alembic.ini
 ├── requirements.txt
-└── .gitignore
+├── aoo.log
+└── .env
+├── E-commerce.postman_collection.json
 ```
+
 
 ---
 
@@ -189,14 +214,6 @@ All API errors follow a consistent JSON structure:
 
 ---
 
-## 🚀 Deployment Tips
-
-- Use **Uvicorn** for production deployment
-- Ensure environment variables are used for sensitive data
-- Regularly back up the database before migration runs
-
----
-
 ## 🧪 Manual Testing
 
 Conduct manual testing to validate:
@@ -208,10 +225,3 @@ Conduct manual testing to validate:
 
 ---
 
-## 🧭 Next Steps
-
-Future enhancements may include:
-
-- Writing unit tests using **pytest**
-- Adding **rate limiting** for abuse prevention
-- Enabling real payment gateway integrations

@@ -11,6 +11,7 @@ from app.db.config import logger
 
 router = APIRouter()
 
+# Endpoint to add an item to the user's cart
 @router.post("/addToCart",response_model=AddToCartResponse)
 def add_cart_item(
     item: CartItemCreate,
@@ -19,6 +20,7 @@ def add_cart_item(
 ) -> Dict[str, Any]:
     """
     Add an item to the user's cart.
+    Checks if the product exists and is not deleted before adding.
     """
     product = db.query(Product).filter(Product.id == item.product_id).first()
     if not product:
@@ -38,6 +40,7 @@ def add_cart_item(
         "item": db_item
     }
 
+# Endpoint to view all items in the user's cart
 @router.get("/viewCart", response_model=List[CartItemOut])
 def view_cart(
     db: Session = Depends(get_db),
@@ -53,6 +56,7 @@ def view_cart(
     logger.info(f"User {user.id} viewed their cart. Items: {len(cart_items)}")
     return cart_items
 
+# Endpoint to update the quantity or details of a specific cart item
 @router.put("/update-cart/{item_id}", response_model=AddToCartResponse)
 def update_cart_item(
     item_id: int,
@@ -77,6 +81,7 @@ def update_cart_item(
         "item": db_item
     }
 
+# Endpoint to delete a specific item from the user's cart
 @router.delete("/delete-cart/{item_id}", response_model=str)
 def delete_cart_item(
     item_id: int,
