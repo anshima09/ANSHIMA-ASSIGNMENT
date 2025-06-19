@@ -562,3 +562,50 @@ You can install "python-multipart" with:
 pip install python-multipart
 
 2025-06-15 22:51:28,994 | INFO | ecommerce | Admin fetched all users. Total users: 4
+2025-06-15 23:23:56,050 | INFO | ecommerce | Admin fetched all users. Total users: 4
+2025-06-15 23:24:11,998 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-15 23:24:12,246 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 23:24:45,237 | INFO | ecommerce | Product created: iphone15 by admin 2
+2025-06-15 23:26:16,478 | INFO | ecommerce | Admin 2 fetched all products. Total: 5
+2025-06-15 23:43:21,691 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 23:43:47,160 | INFO | ecommerce | Admin 2 fetched product ID 1
+2025-06-15 23:46:57,242 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 23:48:23,138 | INFO | ecommerce | Product ID 2 updated by admin 2
+2025-06-15 23:49:46,987 | INFO | ecommerce | User logged in: anshima54@gmail.com
+2025-06-15 23:50:27,671 | INFO | ecommerce | Product ID 6 deleted by admin 2
+2025-06-15 23:52:08,703 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-15 23:52:30,082 | INFO | ecommerce | User fetched products with filters. Returned: 2
+2025-06-15 23:54:01,076 | WARNING | ecommerce | No products found matching search keyword: Accessories
+2025-06-15 23:54:11,243 | INFO | ecommerce | User searched for products with keyword 'LED'. Found: 1
+2025-06-15 23:58:22,828 | INFO | ecommerce | User fetched all products. Total: 4
+2025-06-16 00:00:10,351 | INFO | ecommerce | User fetched product ID 1
+2025-06-16 00:00:17,509 | INFO | ecommerce | User fetched product ID 2
+2025-06-16 00:00:21,843 | INFO | ecommerce | User fetched product ID 3
+2025-06-16 00:01:33,468 | WARNING | passlib.handlers.bcrypt | (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\anshima\ANSHIMA-ASSIGNMENT\E-commerce FastAPI Project\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-06-16 00:01:33,709 | INFO | ecommerce | User logged in: mahima11@gmail.com
+2025-06-16 00:02:25,422 | INFO | ecommerce | New user registered: sagar18@gmail.com
+2025-06-16 00:02:41,539 | INFO | ecommerce | User logged in: sagar18@gmail.com
+2025-06-16 00:02:56,688 | INFO | ecommerce | User 5 added product 1 (qty: 2) to cart.
+2025-06-16 00:03:37,964 | INFO | ecommerce | User 5 added product 3 (qty: 1) to cart.
+2025-06-16 00:03:57,456 | INFO | ecommerce | User logged in: sagar18@gmail.com
+2025-06-16 00:04:13,490 | INFO | ecommerce | User 5 viewed their cart. Items: 2
+2025-06-16 00:05:23,066 | INFO | ecommerce | User logged in: sagar18@gmail.com
+2025-06-16 00:06:37,697 | INFO | ecommerce | User 5 updated cart item 3.
+2025-06-16 00:07:21,633 | INFO | ecommerce | User logged in: sagar18@gmail.com
+2025-06-16 00:07:37,228 | INFO | ecommerce | User 5 deleted cart item 3.
+2025-06-16 00:08:56,048 | INFO | ecommerce | Order 2 created for user 5 with total 51.98.
+2025-06-16 00:08:56,061 | INFO | ecommerce | Order items added for order 2.
+2025-06-16 00:08:56,066 | INFO | ecommerce | Cart cleared for user 5 after checkout.
+2025-06-16 00:10:02,437 | INFO | ecommerce | User 5 fetched their order history. Total orders: 1
+2025-06-16 00:10:25,911 | WARNING | ecommerce | User 5 tried to fetch non-existent or unauthorized order ID 1
+2025-06-16 00:10:30,224 | INFO | ecommerce | User 5 fetched details for order ID 2

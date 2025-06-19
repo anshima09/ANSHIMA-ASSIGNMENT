@@ -142,7 +142,6 @@ def list_products(
     page: int = Query(1, ge=1),
     page_size: int = Query(10, ge=1, le=100),
     db: Session = Depends(get_db),
-    user = Depends(decode_token)  # Require authentication
 
 ) -> List[ProductOut]:
     """
@@ -171,7 +170,6 @@ def list_products(
 def search_products(
     keyword: str = Query(..., min_length=1),
     db: Session = Depends(get_db),
-    user = Depends(decode_token)  # Require authentication
 
 ) -> List[ProductOut]:
     """
@@ -195,7 +193,6 @@ def get_all_products_for_user(
     skip: int = Query(0, ge=0), 
     limit: int = Query(10, ge=1, le=100), 
     db: Session = Depends(get_db),
-    user = Depends(decode_token)  # Require authentication
 
 ) -> List[ProductOut]:
     """
@@ -213,7 +210,6 @@ def get_all_products_for_user(
 def get_product_detail(
     id: int,
     db: Session = Depends(get_db),
-    user = Depends(decode_token)  # Require authentication
 
 ) -> ProductOut:
     """
